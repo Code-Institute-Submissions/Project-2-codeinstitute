@@ -1,5 +1,10 @@
 // 1: Check that DOM is ready
 $(document).ready(function () {
+  
+  // 10: Load all the details in table
+  displayPokemon();
+  
+  
   // 3: Create Form event listener - for button -> on click
   $("#form-pokemon-entry").submit(function (e) {
     e.preventDefault();
@@ -7,9 +12,8 @@ $(document).ready(function () {
     var pokemonID = $("#text-id").val();
     var pokemonName = $("#text-name").val();
     var pokemonType = $("#text-type").val();
+    
     var pokemonSelected = new Pokemon(pokemonID, pokemonName, pokemonType);
-
-    localStorage.setItem("pokemonA", JSON.stringify(pokemonSelected));
 
     // 4: Set empty pokemon array
     var pokemonList = [];
@@ -25,14 +29,9 @@ $(document).ready(function () {
     // 7: Set object into LocalStorage
     localStorage.setItem('pokemonList',JSON.stringify('pokemonList'));
 
-
-
-    $("#pokemon-id").html(pokemonLocalStore.pokemonID);
-    $("#date-created").html(pokemonLocalStore.dateCreated);
-    $("#pokemon-name").html(pokemonLocalStore.pokemonName);
-    $("#pokemon-type").html(pokemonLocalStore.pokemonType);
+    displayPokemon();
   });
-});
+});//eof
 
 // 2: Create Pokemon function object model template
 function Pokemon(pokemonID, pokemonName, pokemonType) {
@@ -44,5 +43,21 @@ function Pokemon(pokemonID, pokemonName, pokemonType) {
 
 // 8. Looping mechanic
 function displayPokemon(){
+  var pokemonInfo = "";
+
+  if(localStorage.getItem('pokemonList')){
+    let pokemonList = JSON.parse(localStorage.getItem('pokemonList'));
+
+    if(pokemonList.length){
+      for (let pokemonSelected of pokemonList) {
+        pokemonInfo += `<tr><td>${pokemonSelected.pokemonID}</td><td>${pokemonSelected.pokemonName}</td><td>${pokemonSelected.pokemonType}</td><td>${pokemonSelected.dateCreated}</td></tr>`;
+      }
+
+      $('#pokemon-info').html(pokemonInfo);
+    } else {
+      $('#pokemon-info').html('No Students Found');
+    }
+
+  }
   
 } 
