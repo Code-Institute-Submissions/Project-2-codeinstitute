@@ -6,8 +6,9 @@ $(document).ready(function () {
   
   
   // 3: Create Form event listener - for button -> on click
-  $("#form-pokemon-entry").submit(function (e) {
+  $('#form-pokemon-entry').submit(function (e) {
     e.preventDefault();
+
     // Creating object via form
     var pokemonID = $("#text-id").val();
     var pokemonName = $("#text-name").val();
@@ -19,7 +20,7 @@ $(document).ready(function () {
     var pokemonList = [];
 
     // 5: Retrieve items from local storage
-    if (localStorage.getItem("pokemonList")) {
+    if (localStorage.getItem('pokemonList')) {
       pokemonList = JSON.parse(localStorage.getItem("pokemonList"));
     }
 
@@ -27,7 +28,7 @@ $(document).ready(function () {
     pokemonList.push(pokemonSelected);
 
     // 7: Set object into LocalStorage
-    localStorage.setItem('pokemonList',JSON.stringify('pokemonList'));
+    localStorage.setItem('pokemonList',JSON.stringify(pokemonList));
 
     displayPokemon();
   });
@@ -43,21 +44,31 @@ function Pokemon(pokemonID, pokemonName, pokemonType) {
 
 // 8. Looping mechanic
 function displayPokemon(){
+  
   var pokemonInfo = "";
 
-  if(localStorage.getItem('pokemonList')){
+  if(localStorage.getItem('pokemonList')) {
     let pokemonList = JSON.parse(localStorage.getItem('pokemonList'));
 
-    if(pokemonList.length){
+    if(pokemonList.length) {
       for (let pokemonSelected of pokemonList) {
         pokemonInfo += `<tr><td>${pokemonSelected.pokemonID}</td><td>${pokemonSelected.pokemonName}</td><td>${pokemonSelected.pokemonType}</td><td>${pokemonSelected.dateCreated}</td></tr>`;
       }
 
       $('#pokemon-info').html(pokemonInfo);
     } else {
-      $('#pokemon-info').html('No Students Found');
+      $('#pokemon-info').html('No Pokemon Found');
     }
 
   }
   
-} 
+}
+
+// // Call Pokemon API
+// var settings = {
+//   'url':'https://pokeapi.co/api/v2/pokemon/'
+// };
+
+// $.ajax(settings).done(function(response){
+//   console.log(response);
+// }
