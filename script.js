@@ -64,9 +64,13 @@ function displayPokemon(){
   
 }
 
-// // Call Pokemon API
+// Get Pokemon
+pokemonList = JSON.parse(localStorage.getItem('pokemonList'));
+pokemon1Name = pokemonList[0].pokemonName;
+
+// Call Pokemon API
 var settings = {
-  "url": "https://pokeapi.co/api/v2/pokemon/charizard",
+  "url": "https://pokeapi.co/api/v2/pokemon/" + pokemon1Name,
   "method": "GET",
   "timeout": 0,
   "headers": {
@@ -74,6 +78,15 @@ var settings = {
   },
 };
 
+// Extract data from API and print
 $.ajax(settings).done(function (response) {
   console.log(response);
+  this.name = response.name;
+  this.ability1 = response.abilities[0].ability.name;
+  this.ability2 = response.abilities[1].ability.name;
+  this.type1 = response.types[0].type.name;
+  console.log(this.name);
+  console.log(this.ability1);
+  console.log(this.ability2);
+  console.log(this.type1);
 });
