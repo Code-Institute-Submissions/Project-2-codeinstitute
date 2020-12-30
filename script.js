@@ -65,10 +65,15 @@ function displayPokemon(){
 }
 
 // // Call Pokemon API
-// var settings = {
-//   'url':'https://pokeapi.co/api/v2/pokemon/'
-// };
+var settings = {
+  "url": "https://pokeapi.co/api/v2/pokemon/charizard",
+  "method": "GET",
+  "timeout": 0,
+  "headers": {
+    "Cookie": "__cfduid=da70e70cfa2fc56204a2621c43554fdf41608363674"
+  },
+};
 
-// $.ajax(settings).done(function(response){
-//   console.log(response);
-// }
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
