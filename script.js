@@ -25,10 +25,18 @@ $(document).ready(function () {
     };
 
     $.ajax(pokemonAPI).done(function (response) {
+      console.log("This is the Initial Call")
       console.log(response);
+
+      pokemonPreview = response
+      console.log(pokemonPreview);
+      localStorage.setItem("pokemonPreview",JSON.stringify(pokemonPreview));
 
       this.name = response.name;
       console.log(this.name);
+
+      pokemonName123 = response.name;
+      console.log(`testing if the result can be carried outside${pokemonName123}`);
 
       this.ability1 = response.abilities[0].ability.name;
       console.log(this.ability1);
@@ -41,11 +49,23 @@ $(document).ready(function () {
       console.log(this.type1);
 
       if (response.types[1]) {
-        this.type2 = response.type[1].type.name;
+        this.type2 = response.types[1].type.name;
         console.log(this.type2);
       }
 
+      localStorage.setItem("pokemonName123", pokemonName123)
+
     });
+
+    var pokemon123 = localStorage.getItem("pokemonName123");
+    console.log(`I got it! ${pokemon123}`);
+
+    var pokemonPreview = JSON.parse(localStorage.getItem("pokemonPreview"))
+    console.log(pokemonPreview);
+    let pokemonSprite = pokemonPreview.sprites.front_default;
+    console.log(pokemonSprite);
+
+    $("img.pokemonPreview").attr('src',pokemonSprite)
 
     // 4: Set empty pokemon array
     var pokemonList = [];
@@ -91,62 +111,42 @@ function displayPokemon() {
   }
 }
 
-// Get Pokemon
-pokemonList = JSON.parse(localStorage.getItem("pokemonList"));
-pokemon1Name = pokemonList[3].pokemonName;
+// // Get Pokemon
+// pokemonList = JSON.parse(localStorage.getItem("pokemonList"));
+// pokemon1Name = pokemonList[3].pokemonName;
 
-// Call Pokemon API
-var settings = {
-  url: "https://pokeapi.co/api/v2/pokemon/" + pokemon1Name,
-  method: "GET",
-  timeout: 0,
-  headers: {
-    Cookie: "__cfduid=da70e70cfa2fc56204a2621c43554fdf41608363674",
-  },
-};
+// // Call Pokemon API
+// var settings = {
+//   url: "https://pokeapi.co/api/v2/pokemon/" + pokemon1Name,
+//   method: "GET",
+//   timeout: 0,
+//   headers: {
+//     Cookie: "__cfduid=da70e70cfa2fc56204a2621c43554fdf41608363674",
+//   },
+// };
 
-// Extract data from API and print
-$.ajax(settings).done(function (response) {
-  console.log(response);
-  this.name = response.name;
-  this.ability1 = response.abilities[0].ability.name;
-  if (response.abilities[1]) {
-    this.ability2 = response.abilities[1].ability.name;
-    console.log(this.ability2);
-  }
-  this.type1 = response.types[0].type.name;
-  console.log(this.name);
-  console.log(this.ability1);
-  console.log(this.type1);
-});
+// // Extract data from API and print
+// $.ajax(settings).done(function (response) {
+//   console.log(response);
+//   this.name = response.name;
+//   this.ability1 = response.abilities[0].ability.name;
+//   if (response.abilities[1]) {
+//     this.ability2 = response.abilities[1].ability.name;
+//     console.log(this.ability2);
+//   }
+//   this.type1 = response.types[0].type.name;
+//   console.log(this.name);
+//   console.log(this.ability1);
+//   console.log(this.type1);
+// });
 
 
 
 // Autocomplete search bar
 $(function () {
   var allPokemonList = [
-    "ActionScript",
-    "AppleScript",
-    "Asp",
-    "BASIC",
-    "C",
-    "C++",
-    "Clojure",
-    "COBOL",
-    "ColdFusion",
-    "Erlang",
-    "Fortran",
-    "Groovy",
-    "Haskell",
-    "Java",
-    "JavaScript",
-    "Lisp",
-    "Perl",
-    "PHP",
-    "Python",
-    "Ruby",
-    "Scala",
-    "Scheme"
+    "Mewtwo",
+    "Pikachu",
   ];
   $("#text-name").autocomplete({
     source: allPokemonList
