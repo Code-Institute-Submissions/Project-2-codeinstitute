@@ -1,154 +1,51 @@
 // 1: Check that DOM is ready
 $(document).ready(function () {
-  // 10: Load all the details in table
-  displayPokemon();
-
-  // 3: Create Form event listener - for button -> on click
+  let pokemonPreview;
   $("#form-pokemon-entry").submit(function (e) {
     e.preventDefault();
-
-    // Creating object via form
-    // var pokemonID = $("#text-id").val();
     var pokemonNameInput = $("#text-name").val();
-    // var pokemonType = $("#text-type").val();
-
-    // var pokemonSelected = new Pokemon(pokemonID, pokemonName, pokemonType);
-
-    // Call API
     var pokemonAPI = {
       url: "https://pokeapi.co/api/v2/pokemon/" + pokemonNameInput,
       method: "GET",
-      timeout: 0,
-      headers: {
-        Cookie: "__cfduid=da70e70cfa2fc56204a2621c43554fdf41608363674",
-      },
+      timeout: 0
     };
-
     $.ajax(pokemonAPI).done(function (response) {
-      console.log("This is the Initial Call")
-      console.log(response);
+      pokemonPreview = response;
+      let pokemonSprite = pokemonPreview.spritess.front_default;
+      console.log("pokemonSprite", pokemonSprite);
 
-      pokemonPreview = response
-      console.log(pokemonPreview);
-      localStorage.setItem("pokemonPreview",JSON.stringify(pokemonPreview));
-
-      this.name = response.name;
-      console.log(this.name);
-
-      pokemonName123 = response.name;
-      console.log(`testing if the result can be carried outside${pokemonName123}`);
-
-      this.ability1 = response.abilities[0].ability.name;
-      console.log(this.ability1);
-
-      if (response.abilities[1]) {
-        this.ability2 = response.abilities[1].ability.name;
-        console.log(this.ability2);
-      }
-      this.type1 = response.types[0].type.name;
-      console.log(this.type1);
-
-      if (response.types[1]) {
-        this.type2 = response.types[1].type.name;
-        console.log(this.type2);
-      }
-
-      localStorage.setItem("pokemonName123", pokemonName123)
-
+      $("img.pokemonPreview").attr("src", pokemonSprite);
+      // Write a function to save pokemonPreview to the local storage
+      // Another function to extract from local storage and display in table
     });
-
-    var pokemon123 = localStorage.getItem("pokemonName123");
-    console.log(`I got it! ${pokemon123}`);
-
-    var pokemonPreview = JSON.parse(localStorage.getItem("pokemonPreview"))
-    console.log(pokemonPreview);
-    let pokemonSprite = pokemonPreview.sprites.front_default;
-    console.log(pokemonSprite);
-
-    $("img.pokemonPreview").attr('src',pokemonSprite)
-
-    // 4: Set empty pokemon array
-    var pokemonList = [];
-
-    // 5: Retrieve items from local storage
-    if (localStorage.getItem("pokemonList")) {
-      pokemonList = JSON.parse(localStorage.getItem("pokemonList"));
-    }
-
-    // 6: Push obj into array
-    pokemonList.push(pokemonSelected);
-
-    // 7: Set object into LocalStorage
-    localStorage.setItem("pokemonList", JSON.stringify(pokemonList));
-
-    displayPokemon();
   });
-}); //eof
 
-// 2: Create Pokemon function object model template
-function Pokemon(pokemonID, pokemonName, pokemonType) {
-  this.pokemonID = pokemonID;
-  this.pokemonName = pokemonName;
-  this.pokemonType = pokemonType;
-  this.dateCreated = Date.now();
-}
-
-// 8. Looping mechanic
-function displayPokemon() {
-  var pokemonInfo = "";
-
-  if (localStorage.getItem("pokemonList")) {
-    let pokemonList = JSON.parse(localStorage.getItem("pokemonList"));
-
-    if (pokemonList.length) {
-      for (let pokemonSelected of pokemonList) {
-        pokemonInfo += `<tr><td>${pokemonSelected.pokemonID}</td><td>${pokemonSelected.pokemonName}</td><td>${pokemonSelected.pokemonType}</td><td>${pokemonSelected.dateCreated}</td></tr>`;
-      }
-      $("#pokemon-info").html(pokemonInfo);
-    } else {
-      $("#pokemon-info").html("No Pokemon Found");
-    }
-  }
-}
-
-// // Get Pokemon
-// pokemonList = JSON.parse(localStorage.getItem("pokemonList"));
-// pokemon1Name = pokemonList[3].pokemonName;
-
-// // Call Pokemon API
-// var settings = {
-//   url: "https://pokeapi.co/api/v2/pokemon/" + pokemon1Name,
-//   method: "GET",
-//   timeout: 0,
-//   headers: {
-//     Cookie: "__cfduid=da70e70cfa2fc56204a2621c43554fdf41608363674",
-//   },
-// };
-
-// // Extract data from API and print
-// $.ajax(settings).done(function (response) {
-//   console.log(response);
-//   this.name = response.name;
-//   this.ability1 = response.abilities[0].ability.name;
-//   if (response.abilities[1]) {
-//     this.ability2 = response.abilities[1].ability.name;
-//     console.log(this.ability2);
-//   }
-//   this.type1 = response.types[0].type.name;
-//   console.log(this.name);
-//   console.log(this.ability1);
-//   console.log(this.type1);
-// });
-
-
-
-// Autocomplete search bar
-$(function () {
-  var allPokemonList = [
-    "Mewtwo",
-    "Pikachu",
-  ];
-  $("#text-name").autocomplete({
-    source: allPokemonList
+  // Autocomplete search bar
+  $(function () {
+    let allPokemonListCall = {
+      url: "https://pokeapi.co/api/v2/pokemon?limit=1118",
+      method: "GET",
+      timeout: 0
+    };
+    $.ajax(allPokemonListCall).done(function (response) {
+      console.log(
+        response.results.map(function (x) {
+          return x.name;
+        })
+      );
+      let allPokemonList = response.results.map(function (x) {
+        return x.name;
+      });
+      $("#text-name").autocomplete({
+        source: allPokemonList,
+      });
+    });
   });
+  // Adding to Party
+  $("#form-pokemon-entry").submit(function (e) {
+    e.preventDefault();
+    console.log(pokemonPreview)
+  })
 });
+
+
