@@ -1,10 +1,16 @@
 // 1: Check that DOM is ready
 $(document).ready(function () {
+  // pull saved pokemon
+  getPokemon1();
+
+  // declare variables
   let pokemonPreview;
+  let partyPokemon = [];
+
   $("#form-pokemon-entry").submit(function (e) {
     e.preventDefault();
-    var pokemonNameInput = $("#text-name").val();
-    var pokemonAPI = {
+    let pokemonNameInput = $("#text-name").val();
+    let pokemonAPI = {
       url: "https://pokeapi.co/api/v2/pokemon/" + pokemonNameInput,
       method: "GET",
       timeout: 0
@@ -15,8 +21,6 @@ $(document).ready(function () {
       console.log("pokemonSprite", pokemonSprite);
 
       $("img.pokemonPreview").attr("src", pokemonSprite);
-      // Write a function to save pokemonPreview to the local storage
-      // Another function to extract from local storage and display in table
     });
   });
 
@@ -41,12 +45,33 @@ $(document).ready(function () {
       });
     });
   });
-  
+  // Write a function to save pokemonPreview to the local storage
+
   // Adding to Party
-  $("#form-pokemon-entry").submit(function (e) {
+  $("#save-button1").click(function (e) {
     e.preventDefault();
-    console.log(pokemonPreview)
+    localStorage.setItem("pokemon1", JSON.stringify(pokemonPreview));
+    getPokemon();
   })
+  // Another function to extract from local storage and display in table
+  function getPokemon() {
+    pokemon1 = JSON.parse(localStorage.getItem("pokemon1"));
+    console.log(pokemon1)
+    let pokemon1NameInput = pokemon1.name
+
+    let pokemonAPI = {
+      url: "https://pokeapi.co/api/v2/pokemon/" + pokemon1NameInput,
+      method: "GET",
+      timeout: 0
+    };
+    $.ajax(pokemonAPI).done(function (response) {
+      pokemonPreview = response;
+      let pokemonSprite = pokemonPreview.sprites.front_default;
+      console.log("pokemonSprite", pokemonSprite);
+
+      $("img.pokemon1").attr("src", pokemonSprite);
+    })
+  }
 });
 
 
