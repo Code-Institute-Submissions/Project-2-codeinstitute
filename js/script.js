@@ -47,12 +47,49 @@ $(document).ready(function () {
   });
   // Write a function to save pokemonPreview to the local storage
 
-  // Adding to Party
+  // Adding Pokemon 1 to Party
   $("#save-button1").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon1", JSON.stringify(pokemonPreview));
     getPokemon1();
   })
+
+  // Adding Pokemon 2 to Party
+  $("#save-button2").click(function (e) {
+    e.preventDefault();
+    localStorage.setItem("pokemon2", JSON.stringify(pokemonPreview));
+    getPokemon2();
+  })
+
+  // Adding Pokemon 3 to Party
+  $("#save-button3").click(function (e) {
+    e.preventDefault();
+    localStorage.setItem("pokemon3", JSON.stringify(pokemonPreview));
+    getPokemon3();
+  })
+
+  // Adding Pokemon 4 to Party
+  $("#save-button4").click(function (e) {
+    e.preventDefault();
+    localStorage.setItem("pokemon4", JSON.stringify(pokemonPreview));
+    getPokemon4();
+  })
+  
+  // Adding Pokemon 5 to Party
+  $("#save-button5").click(function (e) {
+    e.preventDefault();
+    localStorage.setItem("pokemon5", JSON.stringify(pokemonPreview));
+    getPokemon5();
+  })
+
+  // Adding Pokemon 6 to Party
+  $("#save-button6").click(function (e) {
+    e.preventDefault();
+    localStorage.setItem("pokemon6", JSON.stringify(pokemonPreview));
+    getPokemon6();
+  })
+
+
   // Another function to extract from local storage and display in table
   function getPokemon1() {
     pokemon1 = JSON.parse(localStorage.getItem("pokemon1"));
