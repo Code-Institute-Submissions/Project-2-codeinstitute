@@ -11,7 +11,7 @@ $(document).ready(function () {
     };
     $.ajax(pokemonAPI).done(function (response) {
       pokemonPreview = response;
-      let pokemonSprite = pokemonPreview.spritess.front_default;
+      let pokemonSprite = pokemonPreview.sprites.front_default;
       console.log("pokemonSprite", pokemonSprite);
 
       $("img.pokemonPreview").attr("src", pokemonSprite);
@@ -41,6 +41,7 @@ $(document).ready(function () {
       });
     });
   });
+  
   // Adding to Party
   $("#form-pokemon-entry").submit(function (e) {
     e.preventDefault();
