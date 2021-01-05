@@ -54,7 +54,7 @@ $(document).ready(function () {
     getPokemon();
   })
   // Another function to extract from local storage and display in table
-  function getPokemon() {
+  function getPokemon1() {
     pokemon1 = JSON.parse(localStorage.getItem("pokemon1"));
     console.log(pokemon1)
     let pokemon1NameInput = pokemon1.name
