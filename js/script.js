@@ -51,7 +51,7 @@ $(document).ready(function () {
   $("#save-button1").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon1", JSON.stringify(pokemonPreview));
-    getPokemon();
+    getPokemon1();
   })
   // Another function to extract from local storage and display in table
   function getPokemon1() {
