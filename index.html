@@ -62,10 +62,11 @@
         <img class="pokemonPreview card-img-top"
           src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <h5 class="pokemon-preview-name">Who's that Pokemon?</h5>
+          <img class="type-icon pokemon-preview-type1" src=""></img>
+          <img class="type-icon pokemon-preview-type2" src=""></img>
+          <p class="genus pokemon-preview-genus"></p>
+          <p class="flavor-text pokemon-preview-flavor-text"></p>
         </div>
       </div>
     </section>
@@ -74,12 +75,17 @@
       <h4>Save this Pokemon in one of your slots</h4>
       <p>Traditionally, in each game, Pokemon Trainers only carry 6 pokemon with them to "Be the very best!", and
         challenge the Pokemon League</p>
-      <span>Slot 1: </span><button id="save-button1">Go! I Choose You!</button></row><br>
-      <row><span>Slot 2: </span><button id="save-button2">Go! I Choose You!</button></row><br>
-      <row><span>Slot 3: </span><button id="save-button3">Go! I Choose You!</button></row><br>
-      <row><span>Slot 4: </span><button id="save-button4">Go! I Choose You!</button></row><br>
-      <row><span>Slot 5: </span><button id="save-button5">Go! I Choose You!</button></row><br>
-      <row><span>Slot 6: </span><button id="save-button6">Go! I Choose You!</button></row><br>
+      <div class="container">
+          <button type="button" class="btn btn-secondary btn-lg" id="save-button1">Slot 1</button>
+          <button type="button" class="btn btn-secondary btn-lg" id="save-button2">Slot 2</button>
+          <button type="button" class="btn btn-secondary btn-lg" id="save-button3">Slot 3</button>
+      </div>
+      <div class="my-3"></div>
+      <div class="container">
+          <button type="button" class="btn btn-secondary btn-lg" id="save-button4">Slot 4</button>
+          <button type="button" class="btn btn-secondary btn-lg" id="save-button5">Slot 5</button>
+          <button type="button" class="btn btn-secondary btn-lg" id="save-button6">Slot 6</button>
+      </div>
     </section>
   </section>
 
