@@ -18,7 +18,7 @@ $(document).ready(function () {
     let pokemonAPI = {
       url: "https://pokeapi.co/api/v2/pokemon/" + pokemonNameInput,
       method: "GET",
-      timeout: 0
+      timeout: 0,
     };
     $.ajax(pokemonAPI).done(function (response) {
       pokemonPreview = response;
@@ -34,7 +34,7 @@ $(document).ready(function () {
     let allPokemonListCall = {
       url: "https://pokeapi.co/api/v2/pokemon?limit=1118",
       method: "GET",
-      timeout: 0
+      timeout: 0,
     };
     $.ajax(allPokemonListCall).done(function (response) {
       console.log(
@@ -115,5 +115,3 @@ $(document).ready(function () {
     })
   }
 });
-
-
