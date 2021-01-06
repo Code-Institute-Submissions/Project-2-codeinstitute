@@ -1,7 +1,12 @@
 // 1: Check that DOM is ready
 $(document).ready(function () {
   // pull saved pokemon
-  getPokemon1();
+  getPokemon(1);
+  getPokemon(2);
+  getPokemon(3);
+  getPokemon(4);
+  getPokemon(5);
+  getPokemon(6);
 
   // declare variables
   let pokemonPreview;
@@ -51,53 +56,53 @@ $(document).ready(function () {
   $("#save-button1").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon1", JSON.stringify(pokemonPreview));
-    getPokemon1();
+    getPokemon(1);
   })
 
   // Adding Pokemon 2 to Party
   $("#save-button2").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon2", JSON.stringify(pokemonPreview));
-    getPokemon2();
+    getPokemon(2);
   })
 
   // Adding Pokemon 3 to Party
   $("#save-button3").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon3", JSON.stringify(pokemonPreview));
-    getPokemon3();
+    getPokemon(3);
   })
 
   // Adding Pokemon 4 to Party
   $("#save-button4").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon4", JSON.stringify(pokemonPreview));
-    getPokemon4();
+    getPokemon(4);
   })
   
   // Adding Pokemon 5 to Party
   $("#save-button5").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon5", JSON.stringify(pokemonPreview));
-    getPokemon5();
+    getPokemon(5);
   })
 
   // Adding Pokemon 6 to Party
   $("#save-button6").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon6", JSON.stringify(pokemonPreview));
-    getPokemon6();
+    getPokemon(6);
   })
 
 
   // Another function to extract from local storage and display in table
-  function getPokemon1() {
-    pokemon1 = JSON.parse(localStorage.getItem("pokemon1"));
-    console.log(pokemon1)
-    let pokemon1NameInput = pokemon1.name
+  function getPokemon(x) {
+    pokemon = JSON.parse(localStorage.getItem(`pokemon${x}`));
+    console.log(pokemon)
+    let pokemonNameInput = pokemon.name
 
     let pokemonAPI = {
-      url: "https://pokeapi.co/api/v2/pokemon/" + pokemon1NameInput,
+      url: "https://pokeapi.co/api/v2/pokemon/" + pokemonNameInput,
       method: "GET",
       timeout: 0
     };
@@ -106,7 +111,7 @@ $(document).ready(function () {
       let pokemonSprite = pokemonPreview.sprites.front_default;
       console.log("pokemonSprite", pokemonSprite);
 
-      $("img.pokemon1").attr("src", pokemonSprite);
+      $(`img.pokemon${x}`).attr("src", pokemonSprite);
     })
   }
 });
