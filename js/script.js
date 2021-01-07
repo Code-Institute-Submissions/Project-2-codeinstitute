@@ -71,7 +71,7 @@ $(document).ready(function () {
         $("img.pokemon-preview-type2").attr("src", "");
       }
       
-      if (pokemonPreview.abilities[1].ability.name) {
+      if (pokemonPreview.abilities[1]) {
         $(".pokemon-preview-ability").html(
           `Ability 1: ${pokemonPreview.abilities[0].ability.name} 
           <br> Ability 2: ${pokemonPreview.abilities[1].ability.name}`)
