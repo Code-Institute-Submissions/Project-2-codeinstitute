@@ -45,6 +45,12 @@ $(document).ready(function () {
       pokemonPreview = response;
       console.log(pokemonPreview.sprites.front_default);
       console.log(typeURL[pokemonPreview.types[0].type.name]);
+      console.log("hp: ", pokemonPreview.stats[0].base_stat);
+      console.log("attack: ", pokemonPreview.stats[1].base_stat);
+      console.log("defense: ", pokemonPreview.stats[2].base_stat);
+      console.log("special-attack: ", pokemonPreview.stats[3].base_stat);
+      console.log("special-defense: ", pokemonPreview.stats[4].base_stat);
+      console.log("speed: ", pokemonPreview.stats[5].base_stat);
 
       $("img.pokemonPreview").attr("src", pokemonPreview.sprites.front_default);
       $(".pokemon-preview-name").html(
@@ -63,6 +69,38 @@ $(document).ready(function () {
       } else {
         $("img.pokemon-preview-type2").attr("src", "");
       }
+
+      $("span.pokemon-preview-total").html(
+        pokemonPreview.stats[0].base_stat+
+        pokemonPreview.stats[1].base_stat+
+        pokemonPreview.stats[2].base_stat+
+        pokemonPreview.stats[3].base_stat+
+        pokemonPreview.stats[4].base_stat+
+        pokemonPreview.stats[5].base_stat);
+      $("span.pokemon-preview-hp").html(pokemonPreview.stats[0].base_stat);
+      $("span.pokemon-preview-attack").html(pokemonPreview.stats[1].base_stat);
+      $("span.pokemon-preview-defense").html(pokemonPreview.stats[2].base_stat);
+      $("span.pokemon-preview-sp-atk").html(pokemonPreview.stats[3].base_stat);
+      $("span.pokemon-preview-sp-def").html(pokemonPreview.stats[4].base_stat);
+      $("span.pokemon-preview-speed").html(pokemonPreview.stats[5].base_stat);
+      $("#progressbar-hp").progressbar({
+        value: pokemonPreview.stats[0].base_stat / 255 * 100,
+      });
+      $("#progressbar-attack").progressbar({
+        value: (pokemonPreview.stats[1].base_stat / 255) * 100,
+      });
+      $("#progressbar-defense").progressbar({
+        value: (pokemonPreview.stats[2].base_stat / 255) * 100,
+      });
+      $("#progressbar-sp-atk").progressbar({
+        value: (pokemonPreview.stats[3].base_stat / 255) * 100,
+      });
+      $("#progressbar-sp-def").progressbar({
+        value: (pokemonPreview.stats[4].base_stat / 255) * 100,
+      });
+      $("#progressbar-speed").progressbar({
+        value: (pokemonPreview.stats[5].base_stat / 255) * 100,
+      });
     });
 
     let pokemonspeciesAPI = {
@@ -78,6 +116,8 @@ $(document).ready(function () {
           pokemonPreviewSpecies.genera[7].genus.slice(1)
       );
     });
+
+    
   });
 
   // Autocomplete search bar
