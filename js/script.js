@@ -107,6 +107,10 @@ $(document).ready(function () {
   $("#save-button1").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon1", JSON.stringify(pokemonPreview));
+    localStorage.setItem(
+      "pokemon1Species",
+      JSON.stringify(pokemonPreviewSpecies)
+    );
     getPokemon(1);
   });
 
@@ -114,6 +118,10 @@ $(document).ready(function () {
   $("#save-button2").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon2", JSON.stringify(pokemonPreview));
+    localStorage.setItem(
+      "pokemon2Species",
+      JSON.stringify(pokemonPreviewSpecies)
+    );
     getPokemon(2);
   });
 
@@ -121,6 +129,10 @@ $(document).ready(function () {
   $("#save-button3").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon3", JSON.stringify(pokemonPreview));
+    localStorage.setItem(
+      "pokemon3Species",
+      JSON.stringify(pokemonPreviewSpecies)
+    );
     getPokemon(3);
   });
 
@@ -128,6 +140,10 @@ $(document).ready(function () {
   $("#save-button4").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon4", JSON.stringify(pokemonPreview));
+    localStorage.setItem(
+      "pokemon4Species",
+      JSON.stringify(pokemonPreviewSpecies)
+    );
     getPokemon(4);
   });
 
@@ -135,6 +151,10 @@ $(document).ready(function () {
   $("#save-button5").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon5", JSON.stringify(pokemonPreview));
+    localStorage.setItem(
+      "pokemon5Species",
+      JSON.stringify(pokemonPreviewSpecies)
+    );
     getPokemon(5);
   });
 
@@ -142,6 +162,10 @@ $(document).ready(function () {
   $("#save-button6").click(function (e) {
     e.preventDefault();
     localStorage.setItem("pokemon6", JSON.stringify(pokemonPreview));
+    localStorage.setItem(
+      "pokemon6Species",
+      JSON.stringify(pokemonPreviewSpecies)
+    );
     getPokemon(6);
   });
 
@@ -149,7 +173,9 @@ $(document).ready(function () {
   function getPokemon(x) {
     if (JSON.parse(localStorage.getItem(`pokemon${x}`))) {
       pokemon = JSON.parse(localStorage.getItem(`pokemon${x}`));
+      pokemonSpecies = JSON.parse(localStorage.getItem(`pokemon${x}Species`));
       console.log(pokemon);
+      console.log(pokemonSpecies);
       let pokemonNameInput = pokemon.name;
 
       let pokemonAPI = {
@@ -159,10 +185,40 @@ $(document).ready(function () {
       };
       $.ajax(pokemonAPI).done(function (response) {
         pokemonPreview = response;
-        let pokemonSprite = pokemonPreview.sprites.front_default;
-        console.log("pokemonSprite", pokemonSprite);
+        console.log(pokemonPreview.sprites.front_default);
+        console.log(typeURL[pokemonPreview.types[0].type.name]);
 
-        $(`img.pokemon${x}`).attr("src", pokemonSprite);
+        $(`img.pokemon${x}`).attr("src", pokemonPreview.sprites.front_default);
+        $(`.pokemon-${x}-name`).html(
+          pokemonPreview.name.charAt(0).toUpperCase() +
+            pokemonPreview.name.slice(1)
+        );
+        $(`img.pokemon-${x}-type1`).attr(
+          "src",
+          typeURL[pokemonPreview.types[0].type.name]
+        );
+        if (pokemonPreview.types[1]) {
+          $(`img.pokemon-${x}-type2`).attr(
+            "src",
+            typeURL[pokemonPreview.types[1].type.name]
+          );
+        } else {
+          $(`img.pokemon-${x}-type2`).attr("src", "");
+        }
+      });
+
+      let pokemonspeciesAPI = {
+        url: "https://pokeapi.co/api/v2/pokemon-species/" + pokemonNameInput,
+        method: "GET",
+        timeout: 0,
+      };
+      $.ajax(pokemonspeciesAPI).done(function (response) {
+        pokemonPreviewSpecies = response;
+        console.log(pokemonPreviewSpecies.genera[7].genus);
+        $(`.pokemon-${x}-genus`).html(
+          pokemonPreviewSpecies.genera[7].genus.charAt(0).toUpperCase() +
+            pokemonPreviewSpecies.genera[7].genus.slice(1)
+        );
       });
     }
   }
