@@ -5,3 +5,17 @@
 .type-icon{
     height:23px;
 }
+
+.ui-progressbar{
+    height:15px;
+}
+
+.ui-progressbar-value{
+    height:15px;
+    background-color: rgb(115, 115, 255);
+}
+
+.card-img-top{
+    height:40vh;
+    width: 40vh;
+}
