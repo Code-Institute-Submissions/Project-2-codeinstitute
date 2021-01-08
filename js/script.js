@@ -134,13 +134,6 @@ $(document).ready(function () {
         }).flavor_text.replace(/\r\n|\n|\r|/gm ," ")}"`
       )
       
-    
-      //   .map(function(x) {
-      //   if(x.language.name == "en"){
-      //     return x.flavor_text
-      //   }
-      // }
-      
       console.log(pokemonPreviewSpecies.genera[7].genus);
       $(".pokemon-preview-genus").html(
         pokemonPreviewSpecies.genera[7].genus.charAt(0).toUpperCase() +
