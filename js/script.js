@@ -73,8 +73,8 @@ $(document).ready(function () {
       
       if (pokemonPreview.abilities[1]) {
         $(".pokemon-preview-ability").html(
-          `Ability 1: ${pokemonPreview.abilities[0].ability.name} 
-          <br> Ability 2: ${pokemonPreview.abilities[1].ability.name}`)
+          `Ability: ${pokemonPreview.abilities[0].ability.name} 
+          <br> Hidden Ability: ${pokemonPreview.abilities[1].ability.name}`)
       } else { 
         $(".pokemon-preview-ability").html(
           `Ability 1: ${pokemonPreview.abilities[0].ability.name}`
@@ -123,6 +123,19 @@ $(document).ready(function () {
     };
     $.ajax(pokemonspeciesAPI).done(function (response) {
       pokemonPreviewSpecies = response;
+      console.log(
+        pokemonPreviewSpecies.flavor_text_entries.find(function(x) {
+          return x.language.name == "en" 
+        }).flavor_text
+        )
+      
+    
+      //   .map(function(x) {
+      //   if(x.language.name == "en"){
+      //     return x.flavor_text
+      //   }
+      // }
+      
       console.log(pokemonPreviewSpecies.genera[7].genus);
       $(".pokemon-preview-genus").html(
         pokemonPreviewSpecies.genera[7].genus.charAt(0).toUpperCase() +
