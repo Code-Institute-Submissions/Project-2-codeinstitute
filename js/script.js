@@ -126,8 +126,13 @@ $(document).ready(function () {
       console.log(
         pokemonPreviewSpecies.flavor_text_entries.find(function(x) {
           return x.language.name == "en" 
-        }).flavor_text
+        }).flavor_text.replace(/\r\n|\n|\r|/gm ," ")
         )
+      $(".pokemon-preview-flavor-text").html(
+        `"${pokemonPreviewSpecies.flavor_text_entries.find(function(x) {
+          return x.language.name == "en" 
+        }).flavor_text.replace(/\r\n|\n|\r|/gm ," ")}"`
+      )
       
     
       //   .map(function(x) {
