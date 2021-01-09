@@ -90,11 +90,14 @@
           </div>
 
           <div class="card container">
-            <label for="pokemon-preview-move-select">Moves: <span class="pokemon-preview-move"></span></label>
+            <label for="pokemon-preview-move-select">Moves: 
+              <span class="pokemon-preview-move"></span>
+              <button type="button" class="btn btn-secondary btn-sm" id="pokemon-preview-move-clear">Clear Moves</button>
+            </label>
             <select type="text" id="pokemon-preview-move-select" placeholder="--Available Moveset--">
               <option value="">--Available Moveset--</option>
             </select>
-            <div id="pokemon-preview-move-chosen"></div>
+            <div id="pokemon-preview-move-chosen">Saved Moves: </div>
           </div>
         </div>
     </section>

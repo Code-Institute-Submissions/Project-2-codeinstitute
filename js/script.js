@@ -175,33 +175,52 @@ $(document).ready(function () {
   $(function () {
     $("#pokemon-preview-move-select").change(function (event) {
       event.preventDefault();
-
-      let chosenMove = $("#pokemon-preview-move-select").val();
-
-      console.log(chosenMove);
-
-      // initialise List variable
-      let previewChosenMoveList = [];
-
-      // Get Move List if it exists in local storage
-      if (localStorage.getItem("previewChosenMoveList")) {
-        previewChosenMoveList = JSON.parse(
-          localStorage.getItem("previewChosenMoveList")
-        );
-      }
-
-      // Pass chosen move into list
-      previewChosenMoveList.push(chosenMove);
-
-      // Store list into localstorage
-      localStorage.setItem(
-        "previewChosenMoveList",
-        JSON.stringify(previewChosenMoveList)
-      );
-
-      displayMoveList(`preview`);
+      moveListSanityDisplay(`preview`);
     });
   });
+
+  // function for checking movelist sanity
+  function moveListSanityDisplay(x) {
+    let chosenMove = $(`#pokemon-${x}-move-select`).val();
+    console.log(chosenMove);
+
+    // initialise List variable
+    let chosenMoveList = [];
+
+    // Get Move List if it exists in local storage
+    if (localStorage.getItem(`${x}ChosenMoveList`)) {
+      if (
+        JSON.parse(
+          localStorage.getItem(`${x}ChosenMoveList`).includes(chosenMove)
+        )
+      ) {
+        alert("Move has already been selected");
+        // directly display moves
+        displayMoveList(x);
+      } else {
+        chosenMoveList = JSON.parse(localStorage.getItem(`${x}ChosenMoveList`));
+        // Pass chosen move into list
+        chosenMoveList.push(chosenMove);
+        // Store list into localstorage
+        localStorage.setItem(
+          `${x}ChosenMoveList`,
+          JSON.stringify(chosenMoveList)
+        );
+
+        displayMoveList(x);
+      }
+    } else {
+      // Pass chosen move into list
+      chosenMoveList.push(chosenMove);
+      // Store list into localstorage
+      localStorage.setItem(
+        `${x}ChosenMoveList`,
+        JSON.stringify(chosenMoveList)
+      );
+
+      displayMoveList(x);
+    }
+  }
 
   // function for displaying movelist
   function displayMoveList(x) {
@@ -217,13 +236,22 @@ $(document).ready(function () {
       // add html tag to each element
       if (pokemonMoveListExtracted.length) {
         for (let movesExtracted of pokemonMoveListExtracted) {
-          movesListExtracted += `<div class="${x}-chosen-move">${movesExtracted}</div>`;
+          movesListExtracted += `<div class="${x}-move-chosen">${movesExtracted}</div>`;
         }
       }
       console.log(movesListExtracted);
       $(`#pokemon-${x}-move-chosen`).html(movesListExtracted);
     }
-  }
+  };
+
+  // event listener for clearing move buttons
+  $("#pokemon-preview-move-clear").click(function (e) {
+    e.preventDefault();
+    console.log("trigger!");
+    $(`.preview-move-chosen`).remove();
+    localStorage.removeItem("previewChosenMoveList");
+  });
+
 
   // Autocomplete search bar
   $(function () {
