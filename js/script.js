@@ -34,6 +34,11 @@ $(document).ready(function () {
 
   $("#form-pokemon-entry").submit(function (e) {
     e.preventDefault();
+
+    // clear the previewChosenMoveList
+    $(`.preview-move-chosen`).remove();
+    localStorage.removeItem("previewChosenMoveList");
+
     let pokemonNameInput = $("#text-name").val();
 
     let pokemonAPI = {
@@ -52,14 +57,16 @@ $(document).ready(function () {
       console.log("special-attack: ", pokemonPreview.stats[3].base_stat);
       console.log("special-defense: ", pokemonPreview.stats[4].base_stat);
       console.log("speed: ", pokemonPreview.stats[5].base_stat);
-      console.log(pokemonPreview.moves.map(function (x) {
-        return x.move.name;
-      }))
+      console.log(
+        pokemonPreview.moves.map(function (x) {
+          return x.move.name;
+        })
+      );
 
       $("img.pokemonPreview").attr("src", pokemonPreview.sprites.front_default);
       $(".pokemon-preview-name").html(
         pokemonPreview.name.charAt(0).toUpperCase() +
-        pokemonPreview.name.slice(1)
+          pokemonPreview.name.slice(1)
       );
       $("img.pokemon-preview-type1").attr(
         "src",
@@ -77,22 +84,22 @@ $(document).ready(function () {
       if (pokemonPreview.abilities[1]) {
         $(".pokemon-preview-ability").html(
           `Ability: ${pokemonPreview.abilities[0].ability.name} 
-          <br> Hidden Ability: ${pokemonPreview.abilities[1].ability.name}`)
+          <br> Hidden Ability: ${pokemonPreview.abilities[1].ability.name}`
+        );
       } else {
         $(".pokemon-preview-ability").html(
           `Ability 1: ${pokemonPreview.abilities[0].ability.name}`
-        )
+        );
       }
-
 
       // Get and Set Pokemon Stats
       $("span.pokemon-preview-total").html(
         pokemonPreview.stats[0].base_stat +
-        pokemonPreview.stats[1].base_stat +
-        pokemonPreview.stats[2].base_stat +
-        pokemonPreview.stats[3].base_stat +
-        pokemonPreview.stats[4].base_stat +
-        pokemonPreview.stats[5].base_stat
+          pokemonPreview.stats[1].base_stat +
+          pokemonPreview.stats[2].base_stat +
+          pokemonPreview.stats[3].base_stat +
+          pokemonPreview.stats[4].base_stat +
+          pokemonPreview.stats[5].base_stat
       );
       $("span.pokemon-preview-hp").html(pokemonPreview.stats[0].base_stat);
       $("span.pokemon-preview-attack").html(pokemonPreview.stats[1].base_stat);
@@ -119,13 +126,21 @@ $(document).ready(function () {
         value: (pokemonPreview.stats[5].base_stat / 200) * 100,
       });
 
-      $("#pokemon-preview-move-select").autocomplete({
-        source: pokemonPreview.moves.map(function (x) {
-          return x.move.name;
-        })
-      })
-    });
+      let pokemonMoveInfo = "";
 
+      let pokemonMoveList = pokemonPreview.moves.map(function (x) {
+        return x.move.name;
+      });
+
+      if (pokemonMoveList.length) {
+        for (let moves of pokemonMoveList) {
+          pokemonMoveInfo += `<option value="${moves}">${moves}</option>`;
+        }
+      }
+      $("#pokemon-preview-move-select").html(
+        `<option value="">--Available Moveset--</option>${pokemonMoveInfo}`
+      );
+    });
     let pokemonspeciesAPI = {
       url: "https://pokeapi.co/api/v2/pokemon-species/" + pokemonNameInput,
       method: "GET",
@@ -134,23 +149,81 @@ $(document).ready(function () {
     $.ajax(pokemonspeciesAPI).done(function (response) {
       pokemonPreviewSpecies = response;
       console.log(
-        pokemonPreviewSpecies.flavor_text_entries.find(function (x) {
-          return x.language.name == "en"
-        }).flavor_text.replace(/\r\n|\n|\r|/gm, " ")
-      )
+        pokemonPreviewSpecies.flavor_text_entries
+          .find(function (x) {
+            return x.language.name == "en";
+          })
+          .flavor_text.replace(/\r\n|\n|\r|/gm, " ")
+      );
       $(".pokemon-preview-flavor-text").html(
-        `Pokédex Entry: "${pokemonPreviewSpecies.flavor_text_entries.find(function (x) {
-          return x.language.name == "en"
-        }).flavor_text.replace(/\r\n|\n|\r|/gm, " ")}"`
-      )
+        `Pokédex Entry: "${pokemonPreviewSpecies.flavor_text_entries
+          .find(function (x) {
+            return x.language.name == "en";
+          })
+          .flavor_text.replace(/\r\n|\n|\r|/gm, " ")}"`
+      );
 
       console.log(pokemonPreviewSpecies.genera[7].genus);
       $(".pokemon-preview-genus").html(
         pokemonPreviewSpecies.genera[7].genus.charAt(0).toUpperCase() +
-        pokemonPreviewSpecies.genera[7].genus.slice(1)
+          pokemonPreviewSpecies.genera[7].genus.slice(1)
       );
     });
+  }); //eof
+
+  // Move Selector Listener that stores chosen moves for preview pokemon
+  $(function () {
+    $("#pokemon-preview-move-select").change(function (event) {
+      event.preventDefault();
+
+      let chosenMove = $("#pokemon-preview-move-select").val();
+
+      console.log(chosenMove);
+
+      // initialise List variable
+      let previewChosenMoveList = [];
+
+      // Get Move List if it exists in local storage
+      if (localStorage.getItem("previewChosenMoveList")) {
+        previewChosenMoveList = JSON.parse(
+          localStorage.getItem("previewChosenMoveList")
+        );
+      }
+
+      // Pass chosen move into list
+      previewChosenMoveList.push(chosenMove);
+
+      // Store list into localstorage
+      localStorage.setItem(
+        "previewChosenMoveList",
+        JSON.stringify(previewChosenMoveList)
+      );
+
+      displayMoveList(`preview`);
+    });
   });
+
+  // function for displaying movelist
+  function displayMoveList(x) {
+    let movesListExtracted = "";
+
+    // get chosen moves for pokemon(x) from localstorage
+    if (localStorage.getItem(`${x}ChosenMoveList`)) {
+      // save into variable pokemonMoveListExtracted
+      let pokemonMoveListExtracted = JSON.parse(
+        localStorage.getItem(`${x}ChosenMoveList`)
+      );
+
+      // add html tag to each element
+      if (pokemonMoveListExtracted.length) {
+        for (let movesExtracted of pokemonMoveListExtracted) {
+          movesListExtracted += `<div class="${x}-chosen-move">${movesExtracted}</div>`;
+        }
+      }
+      console.log(movesListExtracted);
+      $(`#pokemon-${x}-move-chosen`).html(movesListExtracted);
+    }
+  }
 
   // Autocomplete search bar
   $(function () {
@@ -263,7 +336,7 @@ $(document).ready(function () {
         $(`img.pokemon${x}`).attr("src", pokemonPreview.sprites.front_default);
         $(`.pokemon-${x}-name`).html(
           pokemonPreview.name.charAt(0).toUpperCase() +
-          pokemonPreview.name.slice(1)
+            pokemonPreview.name.slice(1)
         );
         $(`img.pokemon-${x}-type1`).attr(
           "src",
@@ -289,7 +362,7 @@ $(document).ready(function () {
         console.log(pokemonPreviewSpecies.genera[7].genus);
         $(`.pokemon-${x}-genus`).html(
           pokemonPreviewSpecies.genera[7].genus.charAt(0).toUpperCase() +
-          pokemonPreviewSpecies.genera[7].genus.slice(1)
+            pokemonPreviewSpecies.genera[7].genus.slice(1)
         );
       });
     }
