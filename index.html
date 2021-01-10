@@ -50,24 +50,33 @@
       <hr>
       <!-- Form -->
       <form id="form-pokemon-entry">
-        <label for="allPokemonList">Search Pokémon:</label>
-        <input type="text" id="text-name" placeholder="e.g. pikachu" />
+        <div class="container">
+          <div class="row my-3">
+            <label for="allPokemonList">Search for a Pokémon:</label>
+            <input type="text" id="text-name" placeholder="e.g. pikachu" />
+          </div>
+          <div class="row">
+            <input type="submit" class="btn btn-secondary" value="Preview Pokémon">
+          </div>
         </div>
-        <h4>Who's that Pokémon?</h4>
-        <input type="submit" value="Preview Pokémon">
       </form>
       <hr>
       <!-- Preview Pokemon -->
       <div id="pokemonPreview" class="card col-md-4">
-        <img class="pokemonPreview card-img-top"
+        <img class="pokemonPreview card-img-top mx-auto"
           src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png" alt="Card image cap">
         <div class="card-body">
-          <h5 class="pokemon-preview-name">Who's that Pokemon?</h5>
+          <h5 class="pokemon-preview-name card-title">Who's that Pokemon?</h5>
           <img class="type-icon pokemon-preview-type1" src=""></img>
           <img class="type-icon pokemon-preview-type2" src=""></img>
-          <div class="genus pokemon-preview-genus"></div>
-          <div class="ability pokemon-preview-ability"></div>
-          <div class="flavor-text pokemon-preview-flavor-text"></div>
+          <div class="genus pokemon-preview-genus card-subtitle text-muted mt-0"></div>
+          <hr>
+          <!--  -->
+          <div class="ability pokemon-preview-ability">Ability: ???</div>
+          <hr>
+          <div class="flavor-text pokemon-preview-flavor-text">Pokedex Entry: ???</div>
+          <hr>
+          <!-- Preview Pokemon Stats Section -->
           <div>
             <div>Stat Total: <span class="pokemon-preview-total">???</span></div>
             <div class="col-12">HP: <span class="pokemon-preview-hp">???</span></div>
@@ -88,12 +97,15 @@
             <div class="col-12">Speed: <span class="pokemon-preview-speed">???</span></div>
             <div id="progressbar-speed"></div>
           </div>
-
+          <!-- Preview Pokemon - Move Card -->
           <div class="card container">
-            <label for="pokemon-preview-move-select">Moves: 
-              <span class="pokemon-preview-move"></span>
-              <button type="button" class="btn btn-secondary btn-sm" id="pokemon-preview-move-clear">Clear Moves</button>
-            </label>
+            <div class="row-fluid my-3">
+              <label for="pokemon-preview-move-select">Moves:
+                <span class="pokemon-preview-move"></span>
+                <button type="button" class="btn btn-outline-secondary btn-sm col" id="pokemon-preview-move-clear">Clear
+                  Moves</button>
+              </label>
+            </div>
             <select type="text" id="pokemon-preview-move-select" placeholder="--Available Moveset--">
               <option value="">--Available Moveset--</option>
             </select>
@@ -128,7 +140,8 @@
     <div class="row">
       <!-- Pokemon1 -->
       <div class="card col-md-4">
-        <img class="pokemon1 card-img-top" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png" alt="Card image cap">
+        <img class="pokemon1 card-img-top mx-auto" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+          alt="Card image cap">
         <div class="card-body">
           <h5 class="pokemon-1-name">Choose Your Pokemon</h5>
           <img class="type-icon pokemon-1-type1" src=""></img>
@@ -140,7 +153,8 @@
       </div>
       <!-- Pokemon2 -->
       <div class="card col-md-4">
-        <img class="pokemon2 card-img-top" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png" alt="Card image cap">
+        <img class="pokemon2 card-img-top mx-auto" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+          alt="Card image cap">
         <div class="card-body">
           <h5 class="pokemon-2-name">Choose Your Pokemon</h5>
           <img class="type-icon pokemon-2-type1" src=""></img>
@@ -152,7 +166,8 @@
       </div>
       <!-- Pokemon3 -->
       <div class="card col-md-4">
-        <img class="pokemon3 card-img-top" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png" alt="Card image cap">
+        <img class="pokemon3 card-img-top mx-auto" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+          alt="Card image cap">
         <div class="card-body">
           <h5 class="pokemon-3-name">Choose Your Pokemon</h5>
           <img class="type-icon pokemon-3-type1" src=""></img>
@@ -164,7 +179,8 @@
       </div>
       <!-- Pokemon4 -->
       <div class="card col-md-4">
-        <img class="pokemon4 card-img-top" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png" alt="Card image cap">
+        <img class="pokemon4 card-img-top mx-auto" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+          alt="Card image cap">
         <div class="card-body">
           <h5 class="pokemon-4-name">Choose Your Pokemon</h5>
           <img class="type-icon pokemon-4-type1" src=""></img>
@@ -176,7 +192,8 @@
       </div>
       <!-- Pokemon5 -->
       <div class="card col-md-4">
-        <img class="pokemon5 card-img-top" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png" alt="Card image cap">
+        <img class="pokemon5 card-img-top mx-auto" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+          alt="Card image cap">
         <div class="card-body">
           <h5 class="pokemon-5-name">Choose Your Pokemon</h5>
           <img class="type-icon pokemon-5-type1" src=""></img>
@@ -188,7 +205,8 @@
       </div>
       <!-- Pokemon6  -->
       <div class="card col-md-4">
-        <img class="pokemon6 card-img-top" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png" alt="Card image cap">
+        <img class="pokemon6 card-img-top mx-auto" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+          alt="Card image cap">
         <div class="card-body">
           <h5 class="pokemon-6-name">Choose Your Pokemon</h5>
           <img class="type-icon pokemon-6-type1" src=""></img>
