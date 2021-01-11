@@ -12,7 +12,7 @@ Design a simple pokedex. When users fill in the form and ask the pokedex to "sea
 - Save up to 6 pokemon so you can refer to them again
 
 # 2. Demo
-To be filled up
+Site is published via github pages and can be viewed [here](https://malrhis.github.io/Project-2-codeinstitute/)
 
 # 3. Technologies Used
 - HTML
