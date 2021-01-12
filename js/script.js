@@ -11,6 +11,8 @@ $(document).ready(function () {
   // declare variables
   let pokemonPreview;
   let pokemonPreviewSpecies;
+  let saveMoveList
+
   let typeURL = {
     bug: "https://www.serebii.net/pokedex-bw/type/bug.gif",
     dark: "https://www.serebii.net/pokedex-bw/type/dark.gif",
@@ -126,12 +128,15 @@ $(document).ready(function () {
         value: (pokemonPreview.stats[5].base_stat / 200) * 100,
       });
 
+      // Initialize Pokemon Move info variable
       let pokemonMoveInfo = "";
 
+      // Extract moves from the API response
       let pokemonMoveList = pokemonPreview.moves.map(function (x) {
         return x.move.name;
       });
 
+      // loop to check if movelist exists and then store moves into pokemonMoveInfo
       if (pokemonMoveList.length) {
         for (let moves of pokemonMoveList) {
           pokemonMoveInfo += `<option value="${moves}">${moves}</option>`;
@@ -177,7 +182,49 @@ $(document).ready(function () {
       event.preventDefault();
       moveListSanityDisplay(`preview`);
     });
-  });
+  }); //eof
+
+  $(function () {
+    $("#pokemon-1-move-select").change(function (event) {
+      event.preventDefault();
+      moveListSanityDisplay(`1`);
+    });
+  }); //eof
+
+  $(function () {
+    $("#pokemon-2-move-select").change(function (event) {
+      event.preventDefault();
+      moveListSanityDisplay(`2`);
+    });
+  }); //eof
+
+  $(function () {
+    $("#pokemon-3-move-select").change(function (event) {
+      event.preventDefault();
+      moveListSanityDisplay(`3`);
+    });
+  }); //eof
+
+  $(function () {
+    $("#pokemon-4-move-select").change(function (event) {
+      event.preventDefault();
+      moveListSanityDisplay(`4`);
+    });
+  }); //eof
+
+  $(function () {
+    $("#pokemon-5-move-select").change(function (event) {
+      event.preventDefault();
+      moveListSanityDisplay(`5`);
+    });
+  }); //eof
+
+  $(function () {
+    $("#pokemon-6-move-select").change(function (event) {
+      event.preventDefault();
+      moveListSanityDisplay(`6`);
+    });
+  }); //eof
 
   // function for checking movelist sanity
   function moveListSanityDisplay(x) {
@@ -220,7 +267,7 @@ $(document).ready(function () {
 
       displayMoveList(x);
     }
-  }
+  } //eof
 
   // function for displaying movelist
   function displayMoveList(x) {
@@ -242,7 +289,7 @@ $(document).ready(function () {
       console.log(movesListExtracted);
       $(`#pokemon-${x}-move-chosen`).html(movesListExtracted);
     }
-  };
+  } //eof
 
   // event listener for clearing move buttons
   $("#pokemon-preview-move-clear").click(function (e) {
@@ -250,8 +297,49 @@ $(document).ready(function () {
     console.log("trigger!");
     $(`.preview-move-chosen`).remove();
     localStorage.removeItem("previewChosenMoveList");
-  });
+  });//eof
 
+  $("#pokemon-1-move-clear").click(function (e) {
+    e.preventDefault();
+    console.log("trigger!");
+    $(`.1-move-chosen`).remove();
+    localStorage.removeItem("1ChosenMoveList");
+  });//eof
+
+  $("#pokemon-2-move-clear").click(function (e) {
+    e.preventDefault();
+    console.log("trigger!");
+    $(`.2-move-chosen`).remove();
+    localStorage.removeItem("2ChosenMoveList");
+  });//eof
+
+  $("#pokemon-3-move-clear").click(function (e) {
+    e.preventDefault();
+    console.log("trigger!");
+    $(`.3-move-chosen`).remove();
+    localStorage.removeItem("3ChosenMoveList");
+  });//eof
+
+  $("#pokemon-4-move-clear").click(function (e) {
+    e.preventDefault();
+    console.log("trigger!");
+    $(`.4-move-chosen`).remove();
+    localStorage.removeItem("4ChosenMoveList");
+  });//eof
+
+  $("#5-preview-move-clear").click(function (e) {
+    e.preventDefault();
+    console.log("trigger!");
+    $(`.5-move-chosen`).remove();
+    localStorage.removeItem("5ChosenMoveList");
+  });//eof
+
+  $("#6-preview-move-clear").click(function (e) {
+    e.preventDefault();
+    console.log("trigger!");
+    $(`.6-move-chosen`).remove();
+    localStorage.removeItem("6ChosenMoveList");
+  });//eof
 
   // Autocomplete search bar
   $(function () {
@@ -273,9 +361,8 @@ $(document).ready(function () {
         source: allPokemonList,
       });
     });
-  });
-  // Write a function to save pokemonPreview to the local storage
-
+  });//eof
+  
   // Adding Pokemon 1 to Party
   $("#save-button1").click(function (e) {
     e.preventDefault();
@@ -284,8 +371,14 @@ $(document).ready(function () {
       "pokemon1Species",
       JSON.stringify(pokemonPreviewSpecies)
     );
+    if(localStorage.getItem("previewChosenMoveList")) {
+      console.log(localStorage.getItem("previewChosenMoveList"));
+      saveMovelist = (JSON.parse(localStorage.getItem("previewChosenMoveList")));
+      console.log(saveMoveList+"HAHAHAHAHAHAHAHAHAHAHAH");
+      localStorage.setItem("1ChosenMoveList",JSON.stringify(saveMovelist));
+    }
     getPokemon(1);
-  });
+  });//eof
 
   // Adding Pokemon 2 to Party
   $("#save-button2").click(function (e) {
@@ -295,8 +388,14 @@ $(document).ready(function () {
       "pokemon2Species",
       JSON.stringify(pokemonPreviewSpecies)
     );
+    if(localStorage.getItem("previewChosenMoveList")) {
+      console.log(localStorage.getItem("previewChosenMoveList"));
+      saveMovelist = (JSON.parse(localStorage.getItem("previewChosenMoveList")));
+      console.log(saveMoveList+"HAHAHAHAHAHAHAHAHAHAHAH");
+      localStorage.setItem("2ChosenMoveList",JSON.stringify(saveMovelist));
+    }
     getPokemon(2);
-  });
+  });//eof
 
   // Adding Pokemon 3 to Party
   $("#save-button3").click(function (e) {
@@ -306,8 +405,14 @@ $(document).ready(function () {
       "pokemon3Species",
       JSON.stringify(pokemonPreviewSpecies)
     );
+    if(localStorage.getItem("previewChosenMoveList")) {
+      console.log(localStorage.getItem("previewChosenMoveList"));
+      saveMovelist = (JSON.parse(localStorage.getItem("previewChosenMoveList")));
+      console.log(saveMoveList+"HAHAHAHAHAHAHAHAHAHAHAH");
+      localStorage.setItem("3ChosenMoveList",JSON.stringify(saveMovelist));
+    }
     getPokemon(3);
-  });
+  });//eof
 
   // Adding Pokemon 4 to Party
   $("#save-button4").click(function (e) {
@@ -317,8 +422,14 @@ $(document).ready(function () {
       "pokemon4Species",
       JSON.stringify(pokemonPreviewSpecies)
     );
+    if(localStorage.getItem("previewChosenMoveList")) {
+      console.log(localStorage.getItem("previewChosenMoveList"));
+      saveMovelist = (JSON.parse(localStorage.getItem("previewChosenMoveList")));
+      console.log(saveMoveList+"HAHAHAHAHAHAHAHAHAHAHAH");
+      localStorage.setItem("4ChosenMoveList",JSON.stringify(saveMovelist));
+    }
     getPokemon(4);
-  });
+  });//eof
 
   // Adding Pokemon 5 to Party
   $("#save-button5").click(function (e) {
@@ -328,8 +439,14 @@ $(document).ready(function () {
       "pokemon5Species",
       JSON.stringify(pokemonPreviewSpecies)
     );
+    if(localStorage.getItem("previewChosenMoveList")) {
+      console.log(localStorage.getItem("previewChosenMoveList"));
+      saveMovelist = (JSON.parse(localStorage.getItem("previewChosenMoveList")));
+      console.log(saveMoveList+"HAHAHAHAHAHAHAHAHAHAHAH");
+      localStorage.setItem("5ChosenMoveList",JSON.stringify(saveMovelist));
+    }
     getPokemon(5);
-  });
+  });//eof
 
   // Adding Pokemon 6 to Party
   $("#save-button6").click(function (e) {
@@ -339,10 +456,16 @@ $(document).ready(function () {
       "pokemon6Species",
       JSON.stringify(pokemonPreviewSpecies)
     );
+    if(localStorage.getItem("previewChosenMoveList")) {
+      console.log(localStorage.getItem("previewChosenMoveList"));
+      saveMovelist = (JSON.parse(localStorage.getItem("previewChosenMoveList")));
+      console.log(saveMoveList+"HAHAHAHAHAHAHAHAHAHAHAH");
+      localStorage.setItem("6ChosenMoveList",JSON.stringify(saveMovelist));
+    }
     getPokemon(6);
-  });
+  });//eof
 
-  // Another function to extract from local storage and display in table
+  // GetPokemon function to extract from local storage and display in table
   function getPokemon(x) {
     if (JSON.parse(localStorage.getItem(`pokemon${x}`))) {
       pokemon = JSON.parse(localStorage.getItem(`pokemon${x}`));
@@ -378,6 +501,73 @@ $(document).ready(function () {
         } else {
           $(`img.pokemon-${x}-type2`).attr("src", "");
         }
+
+        if (pokemonPreview.abilities[1]) {
+          $(`.pokemon-${x}-ability`).html(
+            `Ability: ${pokemonPreview.abilities[0].ability.name} 
+          <br> Hidden Ability: ${pokemonPreview.abilities[1].ability.name}`
+          );
+        } else {
+          $(`.pokemon-${x}-ability`).html(
+            `Ability 1: ${pokemonPreview.abilities[0].ability.name}`
+          );
+        }
+
+        $(`span.pokemon-${x}-total`).html(
+          pokemonPreview.stats[0].base_stat +
+            pokemonPreview.stats[1].base_stat +
+            pokemonPreview.stats[2].base_stat +
+            pokemonPreview.stats[3].base_stat +
+            pokemonPreview.stats[4].base_stat +
+            pokemonPreview.stats[5].base_stat
+        );
+        $(`span.pokemon-${x}-hp`).html(pokemonPreview.stats[0].base_stat);
+        $(`span.pokemon-${x}-attack`).html(pokemonPreview.stats[1].base_stat);
+        $(`span.pokemon-${x}-defense`).html(pokemonPreview.stats[2].base_stat);
+        $(`span.pokemon-${x}-sp-atk`).html(pokemonPreview.stats[3].base_stat);
+        $(`span.pokemon-${x}-sp-def`).html(pokemonPreview.stats[4].base_stat);
+        $(`span.pokemon-${x}-speed`).html(pokemonPreview.stats[5].base_stat);
+        $(`#${x}-progressbar-hp`).progressbar({
+          value: (pokemonPreview.stats[0].base_stat / 200) * 100,
+        });
+        $(`#${x}-progressbar-attack`).progressbar({
+          value: (pokemonPreview.stats[1].base_stat / 200) * 100,
+        });
+        $(`#${x}-progressbar-defense`).progressbar({
+          value: (pokemonPreview.stats[2].base_stat / 200) * 100,
+        });
+        $(`#${x}-progressbar-sp-atk`).progressbar({
+          value: (pokemonPreview.stats[3].base_stat / 200) * 100,
+        });
+        $(`#${x}-progressbar-sp-def`).progressbar({
+          value: (pokemonPreview.stats[4].base_stat / 200) * 100,
+        });
+        $(`#${x}-progressbar-speed`).progressbar({
+          value: (pokemonPreview.stats[5].base_stat / 200) * 100,
+        });
+
+        // Initialize Pokemon Move info variable
+        let pokemonMoveInfo = "";
+        console.log(pokemonMoveInfo);
+
+        // Extract moves from the API response
+        let pokemonMoveList = pokemonPreview.moves.map(function (x) {
+          return x.move.name;
+        });
+        console.log(pokemonMoveList);
+
+        // loop to check if movelist exists and then store moves into pokemonMoveInfo
+        if (pokemonMoveList.length) {
+          for (let moves of pokemonMoveList) {
+            pokemonMoveInfo += `<option value="${moves}">${moves}</option>`;
+          }
+        }
+        $(`#pokemon-${x}-move-select`).html(
+          `<option value="">--Available Moveset--</option>${pokemonMoveInfo}`
+        );
+        
+          displayMoveList(x);
+
       });
 
       let pokemonspeciesAPI = {
@@ -387,6 +577,21 @@ $(document).ready(function () {
       };
       $.ajax(pokemonspeciesAPI).done(function (response) {
         pokemonPreviewSpecies = response;
+        console.log(
+          pokemonPreviewSpecies.flavor_text_entries
+            .find(function (x) {
+              return x.language.name == "en";
+            })
+            .flavor_text.replace(/\r\n|\n|\r|/gm, " ")
+        );
+        $(`.pokemon-${x}-flavor-text`).html(
+          `Pokédex Entry: "${pokemonPreviewSpecies.flavor_text_entries
+            .find(function (x) {
+              return x.language.name == "en";
+            })
+            .flavor_text.replace(/\r\n|\n|\r|/gm, " ")}"`
+        );
+
         console.log(pokemonPreviewSpecies.genera[7].genus);
         $(`.pokemon-${x}-genus`).html(
           pokemonPreviewSpecies.genera[7].genus.charAt(0).toUpperCase() +
@@ -394,5 +599,5 @@ $(document).ready(function () {
         );
       });
     }
-  }
-});
+  } //eof
+});//eof
