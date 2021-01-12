@@ -11,7 +11,7 @@ $(document).ready(function () {
   // declare variables
   let pokemonPreview;
   let pokemonPreviewSpecies;
-  let saveMoveList
+  let saveMoveList;
 
   let typeURL = {
     bug: "https://www.serebii.net/pokedex-bw/type/bug.gif",
@@ -297,49 +297,49 @@ $(document).ready(function () {
     console.log("trigger!");
     $(`.preview-move-chosen`).remove();
     localStorage.removeItem("previewChosenMoveList");
-  });//eof
+  }); //eof
 
   $("#pokemon-1-move-clear").click(function (e) {
     e.preventDefault();
     console.log("trigger!");
     $(`.1-move-chosen`).remove();
     localStorage.removeItem("1ChosenMoveList");
-  });//eof
+  }); //eof
 
   $("#pokemon-2-move-clear").click(function (e) {
     e.preventDefault();
     console.log("trigger!");
     $(`.2-move-chosen`).remove();
     localStorage.removeItem("2ChosenMoveList");
-  });//eof
+  }); //eof
 
   $("#pokemon-3-move-clear").click(function (e) {
     e.preventDefault();
     console.log("trigger!");
     $(`.3-move-chosen`).remove();
     localStorage.removeItem("3ChosenMoveList");
-  });//eof
+  }); //eof
 
   $("#pokemon-4-move-clear").click(function (e) {
     e.preventDefault();
     console.log("trigger!");
     $(`.4-move-chosen`).remove();
     localStorage.removeItem("4ChosenMoveList");
-  });//eof
+  }); //eof
 
   $("#5-preview-move-clear").click(function (e) {
     e.preventDefault();
     console.log("trigger!");
     $(`.5-move-chosen`).remove();
     localStorage.removeItem("5ChosenMoveList");
-  });//eof
+  }); //eof
 
   $("#6-preview-move-clear").click(function (e) {
     e.preventDefault();
     console.log("trigger!");
     $(`.6-move-chosen`).remove();
     localStorage.removeItem("6ChosenMoveList");
-  });//eof
+  }); //eof
 
   // Autocomplete search bar
   $(function () {
@@ -361,8 +361,8 @@ $(document).ready(function () {
         source: allPokemonList,
       });
     });
-  });//eof
-  
+  }); //eof
+
   // Adding Pokemon 1 to Party
   $("#save-button1").click(function (e) {
     e.preventDefault();
@@ -371,14 +371,17 @@ $(document).ready(function () {
       "pokemon1Species",
       JSON.stringify(pokemonPreviewSpecies)
     );
-    if(localStorage.getItem("previewChosenMoveList")) {
+    $(`.1-move-chosen`).remove();
+    localStorage.removeItem("1ChosenMoveList");
+    if (localStorage.getItem("previewChosenMoveList")) {
       console.log(localStorage.getItem("previewChosenMoveList"));
-      saveMovelist = (JSON.parse(localStorage.getItem("previewChosenMoveList")));
-      console.log(saveMoveList+"HAHAHAHAHAHAHAHAHAHAHAH");
-      localStorage.setItem("1ChosenMoveList",JSON.stringify(saveMovelist));
+      saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
+      console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
+
+      localStorage.setItem("1ChosenMoveList", JSON.stringify(saveMovelist));
     }
     getPokemon(1);
-  });//eof
+  }); //eof
 
   // Adding Pokemon 2 to Party
   $("#save-button2").click(function (e) {
@@ -388,14 +391,17 @@ $(document).ready(function () {
       "pokemon2Species",
       JSON.stringify(pokemonPreviewSpecies)
     );
-    if(localStorage.getItem("previewChosenMoveList")) {
+    $(`.2-move-chosen`).remove();
+    localStorage.removeItem("2ChosenMoveList");
+    if (localStorage.getItem("previewChosenMoveList")) {
       console.log(localStorage.getItem("previewChosenMoveList"));
-      saveMovelist = (JSON.parse(localStorage.getItem("previewChosenMoveList")));
-      console.log(saveMoveList+"HAHAHAHAHAHAHAHAHAHAHAH");
-      localStorage.setItem("2ChosenMoveList",JSON.stringify(saveMovelist));
+      saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
+      console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
+
+      localStorage.setItem("2ChosenMoveList", JSON.stringify(saveMovelist));
     }
     getPokemon(2);
-  });//eof
+  }); //eof
 
   // Adding Pokemon 3 to Party
   $("#save-button3").click(function (e) {
@@ -405,14 +411,17 @@ $(document).ready(function () {
       "pokemon3Species",
       JSON.stringify(pokemonPreviewSpecies)
     );
-    if(localStorage.getItem("previewChosenMoveList")) {
+    $(`.3-move-chosen`).remove();
+    localStorage.removeItem("3ChosenMoveList");
+    if (localStorage.getItem("previewChosenMoveList")) {
       console.log(localStorage.getItem("previewChosenMoveList"));
-      saveMovelist = (JSON.parse(localStorage.getItem("previewChosenMoveList")));
-      console.log(saveMoveList+"HAHAHAHAHAHAHAHAHAHAHAH");
-      localStorage.setItem("3ChosenMoveList",JSON.stringify(saveMovelist));
+      saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
+      console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
+
+      localStorage.setItem("3ChosenMoveList", JSON.stringify(saveMovelist));
     }
     getPokemon(3);
-  });//eof
+  }); //eof
 
   // Adding Pokemon 4 to Party
   $("#save-button4").click(function (e) {
@@ -422,14 +431,17 @@ $(document).ready(function () {
       "pokemon4Species",
       JSON.stringify(pokemonPreviewSpecies)
     );
-    if(localStorage.getItem("previewChosenMoveList")) {
+    $(`.4-move-chosen`).remove();
+    localStorage.removeItem("4ChosenMoveList");
+    if (localStorage.getItem("previewChosenMoveList")) {
       console.log(localStorage.getItem("previewChosenMoveList"));
-      saveMovelist = (JSON.parse(localStorage.getItem("previewChosenMoveList")));
-      console.log(saveMoveList+"HAHAHAHAHAHAHAHAHAHAHAH");
-      localStorage.setItem("4ChosenMoveList",JSON.stringify(saveMovelist));
+      saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
+      console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
+
+      localStorage.setItem("4ChosenMoveList", JSON.stringify(saveMovelist));
     }
     getPokemon(4);
-  });//eof
+  }); //eof
 
   // Adding Pokemon 5 to Party
   $("#save-button5").click(function (e) {
@@ -439,14 +451,16 @@ $(document).ready(function () {
       "pokemon5Species",
       JSON.stringify(pokemonPreviewSpecies)
     );
-    if(localStorage.getItem("previewChosenMoveList")) {
+    $(`.5-move-chosen`).remove();
+    localStorage.removeItem("5ChosenMoveList");
+    if (localStorage.getItem("previewChosenMoveList")) {
       console.log(localStorage.getItem("previewChosenMoveList"));
-      saveMovelist = (JSON.parse(localStorage.getItem("previewChosenMoveList")));
-      console.log(saveMoveList+"HAHAHAHAHAHAHAHAHAHAHAH");
-      localStorage.setItem("5ChosenMoveList",JSON.stringify(saveMovelist));
+      saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
+      console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
+      localStorage.setItem("5ChosenMoveList", JSON.stringify(saveMovelist));
     }
     getPokemon(5);
-  });//eof
+  }); //eof
 
   // Adding Pokemon 6 to Party
   $("#save-button6").click(function (e) {
@@ -456,14 +470,17 @@ $(document).ready(function () {
       "pokemon6Species",
       JSON.stringify(pokemonPreviewSpecies)
     );
-    if(localStorage.getItem("previewChosenMoveList")) {
+    $(`.6-move-chosen`).remove();
+    localStorage.removeItem("6ChosenMoveList");
+    if (localStorage.getItem("previewChosenMoveList")) {
       console.log(localStorage.getItem("previewChosenMoveList"));
-      saveMovelist = (JSON.parse(localStorage.getItem("previewChosenMoveList")));
-      console.log(saveMoveList+"HAHAHAHAHAHAHAHAHAHAHAH");
-      localStorage.setItem("6ChosenMoveList",JSON.stringify(saveMovelist));
+      saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
+      console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
+
+      localStorage.setItem("6ChosenMoveList", JSON.stringify(saveMovelist));
     }
     getPokemon(6);
-  });//eof
+  }); //eof
 
   // GetPokemon function to extract from local storage and display in table
   function getPokemon(x) {
@@ -565,9 +582,8 @@ $(document).ready(function () {
         $(`#pokemon-${x}-move-select`).html(
           `<option value="">--Available Moveset--</option>${pokemonMoveInfo}`
         );
-        
-          displayMoveList(x);
 
+        displayMoveList(x);
       });
 
       let pokemonspeciesAPI = {
@@ -600,4 +616,4 @@ $(document).ready(function () {
       });
     }
   } //eof
-});//eof
+}); //eof
