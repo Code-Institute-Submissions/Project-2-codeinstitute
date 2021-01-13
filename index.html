@@ -13,13 +13,12 @@
   <link rel="stylesheet" href="css/jquery-ui.min.css">
   <!-- style.css -->
   <link href="css/style.css" type="text/css" rel="stylesheet" />
-
   <title>Pokédex</title>
 </head>
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top px-3">
     <a class="navbar-brand" href="index.html">
       <img class="d-inline-block align-top" src="https://assets.pokemon.com/static2/_ui/img/favicon.ico" alt="Logo"
         width="30" height="30" loading="lazy" /></a>
@@ -33,7 +32,7 @@
           <a class="nav-link" href="index.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">Move List</a>
+          <a class="nav-link" href="#party-pokemon-section">Party Pokemon</a>
         </li>
       </ul>
     </div>
@@ -64,80 +63,88 @@
     <hr>
     <!-- Preview Pokemon -->
     <section>
-      <div id="pokemonPreview" class="card container-fluid col-lg-6 mx-auto">
-        <img class="pokemonPreview card-img-top mx-auto"
-          src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="pokemon-preview-name card-title">Who's that Pokemon?</h5>
-          <img class="type-icon pokemon-preview-type1" src=""></img>
-          <img class="type-icon pokemon-preview-type2" src=""></img>
-          <div class="genus pokemon-preview-genus card-subtitle text-muted mt-0"></div>
-          <hr>
-          <!-- Preview Pokemon Ability and stats-->
-          <div class="ability pokemon-preview-ability">Ability: ???</div>
-          <hr>
-          <div class="flavor-text pokemon-preview-flavor-text">Pokedex Entry: ???</div>
-          <hr>
-          <!-- Preview Pokemon Stats Section -->
-          <div>
-            <div>Stat Total: <span class="pokemon-preview-total">???</span></div>
-            <div class="col-12">HP: <span class="pokemon-preview-hp">???</span></div>
-            <div id="progressbar-hp"></div>
-
-            <div class="col-12">Attack: <span class="pokemon-preview-attack">???</span></div>
-            <div id="progressbar-attack"></div>
-
-            <div class="col-12">Defense: <span class="pokemon-preview-defense">???</span></div>
-            <div id="progressbar-defense"></div>
-
-            <div class="col-12">Sp. Atk: <span class="pokemon-preview-sp-atk">???</span></div>
-            <div id="progressbar-sp-atk"></div>
-
-            <div class="col-12">Sp. Def: <span class="pokemon-preview-sp-def">???</span></div>
-            <div id="progressbar-sp-def"></div>
-
-            <div class="col-12">Speed: <span class="pokemon-preview-speed">???</span></div>
-            <div id="progressbar-speed"></div>
-          </div>
-          <!-- Preview Pokemon - Move Card -->
-          <div class="card container mt-3 pb-3">
-            <div class="row-fluid my-3">
-              <label for="pokemon-preview-move-select">Moves:
-                <div class="pokemon-preview-move"></div>
-                <button type="button" class="btn btn-outline-secondary btn-sm col" id="pokemon-preview-move-clear">Clear
-                  selected moves</button>
-              </label>
+      <div id="pokemonPreview" class="card container-fluid mx-auto">
+        <div class="row">
+          <div class="col-md-6">
+            <img class="pokemonPreview card-img-top mx-auto"
+              src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="pokemon-preview-name card-title">Who's that Pokemon?</h5>
+              <img class="type-icon pokemon-preview-type1" src=""></img>
+              <img class="type-icon pokemon-preview-type2" src=""></img>
+              <div class="genus pokemon-preview-genus card-subtitle text-muted mt-0"></div>
+              <hr>
+              <!-- Preview Pokemon Ability and stats-->
+              <div class="ability pokemon-preview-ability">Ability: ???</div>
+              <hr>
+              <div class="flavor-text pokemon-preview-flavor-text">Pokedex Entry: ???</div>
+              <hr>
             </div>
-            <select type="text" class="mb-3" id="pokemon-preview-move-select" placeholder="--Available Moveset--">
-              <option value="">--Available Moveset--</option>
-            </select>
-            <div id="pokemon-preview-move-chosen">Saved Moves: </div>
+          </div>
+            <div class="col-md-6">
+              <!-- Preview Pokemon Stats Section -->
+              <div>
+                <div>Stat Total: <span class="pokemon-preview-total">???</span></div>
+                <div class="col-12">HP: <span class="pokemon-preview-hp">???</span></div>
+                <div id="progressbar-hp"></div>
+
+                <div class="col-12">Attack: <span class="pokemon-preview-attack">???</span></div>
+                <div id="progressbar-attack"></div>
+
+                <div class="col-12">Defense: <span class="pokemon-preview-defense">???</span></div>
+                <div id="progressbar-defense"></div>
+
+                <div class="col-12">Sp. Atk: <span class="pokemon-preview-sp-atk">???</span></div>
+                <div id="progressbar-sp-atk"></div>
+
+                <div class="col-12">Sp. Def: <span class="pokemon-preview-sp-def">???</span></div>
+                <div id="progressbar-sp-def"></div>
+
+                <div class="col-12">Speed: <span class="pokemon-preview-speed">???</span></div>
+                <div id="progressbar-speed"></div>
+              </div>
+              <!-- Preview Pokemon - Move Card -->
+              <div class="card container mt-3 pb-3">
+                <div class="row-fluid my-3">
+                  <label for="pokemon-preview-move-select">Moves:
+                    <div class="pokemon-preview-move"></div>
+                    <button type="button" class="btn btn-outline-secondary btn-sm col"
+                      id="pokemon-preview-move-clear">Clear
+                      selected moves</button>
+                  </label>
+                </div>
+                <select type="text" class="mb-3" id="pokemon-preview-move-select" placeholder="--Available Moveset--">
+                  <option value="">--Available Moveset--</option>
+                </select>
+                <div id="pokemon-preview-move-chosen">Saved Moves: </div>
+              </div>
+            </div>
           </div>
         </div>
     </section>
     <!-- End of Preview Pokemon -->
     <hr>
     <section class="container">
-      <h4>Save this Pokemon in one of your slots</h4>
+      <h4>Save the Pokemon above into one of your 6 slots</h4>
       <p>Traditionally, in each game, Pokemon Trainers only carry 6 pokemon with them to "Be the very best!", and
-        challenge the Pokemon League</p>
-      <div class="container">
-        <button type="button" class="btn btn-secondary btn-lg" id="save-button1">Slot 1</button>
-        <button type="button" class="btn btn-secondary btn-lg" id="save-button2">Slot 2</button>
-        <button type="button" class="btn btn-secondary btn-lg" id="save-button3">Slot 3</button>
+        challenge the Pokemon League!</p>
+      <div class="container row mx-auto">
+        <button type="button" class="btn btn-secondary btn-lg col-3 mx-1" id="save-button1">Slot 1</button>
+        <button type="button" class="btn btn-secondary btn-lg col-3 mx-1" id="save-button2">Slot 2</button>
+        <button type="button" class="btn btn-secondary btn-lg col-3 mx-1" id="save-button3">Slot 3</button>
       </div>
       <div class="my-3"></div>
-      <div class="container">
-        <button type="button" class="btn btn-secondary btn-lg" id="save-button4">Slot 4</button>
-        <button type="button" class="btn btn-secondary btn-lg" id="save-button5">Slot 5</button>
-        <button type="button" class="btn btn-secondary btn-lg" id="save-button6">Slot 6</button>
+      <div class="container row mx-auto">
+        <button type="button" class="btn btn-secondary btn-lg col-3 mx-1" id="save-button4">Slot 4</button>
+        <button type="button" class="btn btn-secondary btn-lg col-3 mx-1" id="save-button5">Slot 5</button>
+        <button type="button" class="btn btn-secondary btn-lg col-3 mx-1" id="save-button6">Slot 6</button>
       </div>
     </section>
   </section>
 
   <hr>
 
-  <section class="container">
+  <section class="container" id="party-pokemon-section">
     <h1>Your Party Pokemon</h1>
     <p>Your chosen ones</p>
     <div class="row">
