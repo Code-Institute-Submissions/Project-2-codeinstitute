@@ -381,6 +381,7 @@ $(document).ready(function () {
       localStorage.setItem("1ChosenMoveList", JSON.stringify(saveMovelist));
     }
     getPokemon(1);
+    alert(`You have saved ${(JSON.parse(localStorage.getItem("pokemon1")).name)}`);
   }); //eof
 
   // Adding Pokemon 2 to Party
