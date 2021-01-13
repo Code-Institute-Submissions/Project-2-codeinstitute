@@ -402,6 +402,7 @@ $(document).ready(function () {
       localStorage.setItem("2ChosenMoveList", JSON.stringify(saveMovelist));
     }
     getPokemon(2);
+    alert(`You have saved ${(JSON.parse(localStorage.getItem("pokemon2")).name)}`);
   }); //eof
 
   // Adding Pokemon 3 to Party
@@ -422,6 +423,7 @@ $(document).ready(function () {
       localStorage.setItem("3ChosenMoveList", JSON.stringify(saveMovelist));
     }
     getPokemon(3);
+    alert(`You have saved ${(JSON.parse(localStorage.getItem("pokemon3")).name)}`);
   }); //eof
 
   // Adding Pokemon 4 to Party
@@ -442,6 +444,7 @@ $(document).ready(function () {
       localStorage.setItem("4ChosenMoveList", JSON.stringify(saveMovelist));
     }
     getPokemon(4);
+    alert(`You have saved ${(JSON.parse(localStorage.getItem("pokemon4")).name)}`);
   }); //eof
 
   // Adding Pokemon 5 to Party
@@ -461,6 +464,7 @@ $(document).ready(function () {
       localStorage.setItem("5ChosenMoveList", JSON.stringify(saveMovelist));
     }
     getPokemon(5);
+    alert(`You have saved ${(JSON.parse(localStorage.getItem("pokemon5")).name)}`);
   }); //eof
 
   // Adding Pokemon 6 to Party
@@ -481,6 +485,7 @@ $(document).ready(function () {
       localStorage.setItem("6ChosenMoveList", JSON.stringify(saveMovelist));
     }
     getPokemon(6);
+    alert(`You have saved ${(JSON.parse(localStorage.getItem("pokemon6")).name)}`);
   }); //eof
 
   // GetPokemon function to extract from local storage and display in table
