@@ -157,7 +157,7 @@ $(document).ready(function () {
           }
           $("#pokemon-preview-move-select").html(
             `<option value="">--Available Moveset--</option>${pokemonMoveInfo}`
-          );
+          ); 
         }
       )
       // failure check for pokemonAPI
@@ -165,7 +165,7 @@ $(document).ready(function () {
         if (response.status == "404") {
           alert("Please Enter a Real Pokémon");
         }
-      });
+      }); // eof
 
     let pokemonspeciesAPI = {
       url: "https://pokeapi.co/api/v2/pokemon-species/" + pokemonNameInput,
@@ -656,4 +656,4 @@ $(document).ready(function () {
       });
     }
   } //eof
-}); //eof
+}); // eoDocumentReady
