@@ -49,118 +49,123 @@ $(document).ready(function () {
       timeout: 0,
     };
     $.ajax(pokemonAPI).done(function (response) {
-      if (response == "Not Found") {
-        alert("Please enter a real pokemon name!");
-      } else {
-        pokemonPreview = response;
-        console.log(pokemonPreview.sprites.front_default);
-        console.log(typeURL[pokemonPreview.types[0].type.name]);
-        console.log(pokemonPreview.abilities[0].ability.name);
-        console.log("hp: ", pokemonPreview.stats[0].base_stat);
-        console.log("attack: ", pokemonPreview.stats[1].base_stat);
-        console.log("defense: ", pokemonPreview.stats[2].base_stat);
-        console.log("special-attack: ", pokemonPreview.stats[3].base_stat);
-        console.log("special-defense: ", pokemonPreview.stats[4].base_stat);
-        console.log("speed: ", pokemonPreview.stats[5].base_stat);
-        console.log(
-          pokemonPreview.moves.map(function (x) {
-            return x.move.name;
-          })
-        );
+          pokemonPreview = response;
+          console.log(pokemonPreview.sprites.front_default);
+          console.log(typeURL[pokemonPreview.types[0].type.name]);
+          console.log(pokemonPreview.abilities[0].ability.name);
+          console.log("hp: ", pokemonPreview.stats[0].base_stat);
+          console.log("attack: ", pokemonPreview.stats[1].base_stat);
+          console.log("defense: ", pokemonPreview.stats[2].base_stat);
+          console.log("special-attack: ", pokemonPreview.stats[3].base_stat);
+          console.log("special-defense: ", pokemonPreview.stats[4].base_stat);
+          console.log("speed: ", pokemonPreview.stats[5].base_stat);
+          console.log(
+            pokemonPreview.moves.map(function (x) {
+              return x.move.name;
+            })
+          );
 
-        $("img.pokemonPreview").attr(
-          "src",
-          pokemonPreview.sprites.front_default
-        );
-        $(".pokemon-preview-name").html(
-          pokemonPreview.name.charAt(0).toUpperCase() +
-            pokemonPreview.name.slice(1)
-        );
-        $("img.pokemon-preview-type1").attr(
-          "src",
-          typeURL[pokemonPreview.types[0].type.name]
-        );
-        if (pokemonPreview.types[1]) {
-          $("img.pokemon-preview-type2").attr(
+          $("img.pokemonPreview").attr(
             "src",
-            typeURL[pokemonPreview.types[1].type.name]
+            pokemonPreview.sprites.front_default
           );
-        } else {
-          $("img.pokemon-preview-type2").attr("src", "");
-        }
-
-        if (pokemonPreview.abilities[1]) {
-          $(".pokemon-preview-ability").html(
-            `Ability: ${pokemonPreview.abilities[0].ability.name} 
-          <br> Hidden Ability: ${pokemonPreview.abilities[1].ability.name}`
+          $(".pokemon-preview-name").html(
+            pokemonPreview.name.charAt(0).toUpperCase() +
+              pokemonPreview.name.slice(1)
           );
-        } else {
-          $(".pokemon-preview-ability").html(
-            `Ability 1: ${pokemonPreview.abilities[0].ability.name}`
+          $("img.pokemon-preview-type1").attr(
+            "src",
+            typeURL[pokemonPreview.types[0].type.name]
           );
-        }
-
-        // Get and Set Pokemon Stats
-        $("span.pokemon-preview-total").html(
-          pokemonPreview.stats[0].base_stat +
-            pokemonPreview.stats[1].base_stat +
-            pokemonPreview.stats[2].base_stat +
-            pokemonPreview.stats[3].base_stat +
-            pokemonPreview.stats[4].base_stat +
-            pokemonPreview.stats[5].base_stat
-        );
-        $("span.pokemon-preview-hp").html(pokemonPreview.stats[0].base_stat);
-        $("span.pokemon-preview-attack").html(
-          pokemonPreview.stats[1].base_stat
-        );
-        $("span.pokemon-preview-defense").html(
-          pokemonPreview.stats[2].base_stat
-        );
-        $("span.pokemon-preview-sp-atk").html(
-          pokemonPreview.stats[3].base_stat
-        );
-        $("span.pokemon-preview-sp-def").html(
-          pokemonPreview.stats[4].base_stat
-        );
-        $("span.pokemon-preview-speed").html(pokemonPreview.stats[5].base_stat);
-        $("#progressbar-hp").progressbar({
-          value: (pokemonPreview.stats[0].base_stat / 200) * 100,
-        });
-        $("#progressbar-attack").progressbar({
-          value: (pokemonPreview.stats[1].base_stat / 200) * 100,
-        });
-        $("#progressbar-defense").progressbar({
-          value: (pokemonPreview.stats[2].base_stat / 200) * 100,
-        });
-        $("#progressbar-sp-atk").progressbar({
-          value: (pokemonPreview.stats[3].base_stat / 200) * 100,
-        });
-        $("#progressbar-sp-def").progressbar({
-          value: (pokemonPreview.stats[4].base_stat / 200) * 100,
-        });
-        $("#progressbar-speed").progressbar({
-          value: (pokemonPreview.stats[5].base_stat / 200) * 100,
-        });
-
-        // Initialize Pokemon Move info variable
-        let pokemonMoveInfo = "";
-
-        // Extract moves from the API response
-        let pokemonMoveList = pokemonPreview.moves.map(function (x) {
-          return x.move.name;
-        });
-
-        // loop to check if movelist exists and then store moves into pokemonMoveInfo
-        if (pokemonMoveList.length) {
-          for (let moves of pokemonMoveList) {
-            pokemonMoveInfo += `<option value="${moves}">${moves}</option>`;
+          if (pokemonPreview.types[1]) {
+            $("img.pokemon-preview-type2").attr(
+              "src",
+              typeURL[pokemonPreview.types[1].type.name]
+            );
+          } else {
+            $("img.pokemon-preview-type2").attr("src", "");
           }
+
+          if (pokemonPreview.abilities[1]) {
+            $(".pokemon-preview-ability").html(
+              `Ability: ${pokemonPreview.abilities[0].ability.name} 
+          <br> Hidden Ability: ${pokemonPreview.abilities[1].ability.name}`
+            );
+          } else {
+            $(".pokemon-preview-ability").html(
+              `Ability 1: ${pokemonPreview.abilities[0].ability.name}`
+            );
+          }
+
+          // Get and Set Pokemon Stats
+          $("span.pokemon-preview-total").html(
+            pokemonPreview.stats[0].base_stat +
+              pokemonPreview.stats[1].base_stat +
+              pokemonPreview.stats[2].base_stat +
+              pokemonPreview.stats[3].base_stat +
+              pokemonPreview.stats[4].base_stat +
+              pokemonPreview.stats[5].base_stat
+          );
+          $("span.pokemon-preview-hp").html(pokemonPreview.stats[0].base_stat);
+          $("span.pokemon-preview-attack").html(
+            pokemonPreview.stats[1].base_stat
+          );
+          $("span.pokemon-preview-defense").html(
+            pokemonPreview.stats[2].base_stat
+          );
+          $("span.pokemon-preview-sp-atk").html(
+            pokemonPreview.stats[3].base_stat
+          );
+          $("span.pokemon-preview-sp-def").html(
+            pokemonPreview.stats[4].base_stat
+          );
+          $("span.pokemon-preview-speed").html(
+            pokemonPreview.stats[5].base_stat
+          );
+          $("#progressbar-hp").progressbar({
+            value: (pokemonPreview.stats[0].base_stat / 200) * 100,
+          });
+          $("#progressbar-attack").progressbar({
+            value: (pokemonPreview.stats[1].base_stat / 200) * 100,
+          });
+          $("#progressbar-defense").progressbar({
+            value: (pokemonPreview.stats[2].base_stat / 200) * 100,
+          });
+          $("#progressbar-sp-atk").progressbar({
+            value: (pokemonPreview.stats[3].base_stat / 200) * 100,
+          });
+          $("#progressbar-sp-def").progressbar({
+            value: (pokemonPreview.stats[4].base_stat / 200) * 100,
+          });
+          $("#progressbar-speed").progressbar({
+            value: (pokemonPreview.stats[5].base_stat / 200) * 100,
+          });
+
+          // Initialize Pokemon Move info variable
+          let pokemonMoveInfo = "";
+
+          // Extract moves from the API response
+          let pokemonMoveList = pokemonPreview.moves.map(function (x) {
+            return x.move.name;
+          });
+
+          // loop to check if movelist exists and then store moves into pokemonMoveInfo
+          if (pokemonMoveList.length) {
+            for (let moves of pokemonMoveList) {
+              pokemonMoveInfo += `<option value="${moves}">${moves}</option>`;
+            }
+          }
+          $("#pokemon-preview-move-select").html(
+            `<option value="">--Available Moveset--</option>${pokemonMoveInfo}`
+          );
         }
-        $("#pokemon-preview-move-select").html(
-          `<option value="">--Available Moveset--</option>${pokemonMoveInfo}`
-        );
-      }
-    });
+      )
+      // failure check for pokemonAPI
+      .fail(function (response) {
+        if (response.status == "404") {
+          alert("Please Enter a Real Pokémon");
+        }
+      });
 
     let pokemonspeciesAPI = {
       url: "https://pokeapi.co/api/v2/pokemon-species/" + pokemonNameInput,
@@ -540,6 +545,7 @@ $(document).ready(function () {
           pokemonPreview.name.charAt(0).toUpperCase() +
             pokemonPreview.name.slice(1)
         );
+        $(`img.slot-${x}-img`).attr("src",pokemonPreview.sprites.front_default);
         $(`img.pokemon-${x}-type1`).attr(
           "src",
           typeURL[pokemonPreview.types[0].type.name]
