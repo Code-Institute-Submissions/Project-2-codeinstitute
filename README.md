@@ -1,4 +1,4 @@
-# Project-2-codeinstitute
+# <img style="height:150px" src="images/rotom-pokedex.png" > Pokédex
 
 # 1. Background & Objective
 ## Background / Problem Statement
