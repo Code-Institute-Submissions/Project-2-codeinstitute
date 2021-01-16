@@ -199,7 +199,7 @@ The below `code snippets` were added to HTML `<head>`
 
 - <script src="js/jquery-ui.min.js" crossorigin="anonymous"></script>
 ```
-# 10.
+# 10. Content Credits
 
 # 11. Content Credits
 
@@ -221,5 +221,37 @@ The below `code snippets` were added to HTML `<head>`
 
 
 # 14. Deployment
+## 14.1 Preparation
+Before the site goes `live` the following elements are checked via Visual Studio Code's `Live Server` extension:
+- Fulfillment of Learning objectives from Code `Insitutes' Assessment Handbook`
+- Check all code linters and validators are clear
+- Check that all images src are not broken
+- Test viewport dynamic resizing for android (Samsung S9) and iOS (iPhone X/XS)
+- Check Preview pokemon feature
+- Ensure all elements of the preview pokemon are displayed, including sprites and type icons
+- Check Movelist for preview pokemon
+- Check movelist double entry alert
+- Check Saving function and saving function alert message
+- Check all 6 slots can be saved
+- Ensure all elements of the Saved pokemon are displayed, including sprites and type icons
+- Check Movelist for all 6 pokemon
+
+## 14.2 Deployment
+Deployment was done via github pages.
+
+After ensuring that final commit and push via Visual Studio Code was done
+
+1. Check if the contents have been successfully pushed to repository at https://github.com/Malrhis/Project-2-codeinstitute
+2. Verify that site has been published to github pages via settings section of the repository ([Linke](https://github.com/Malrhis/Project-2-codeinstitute/settings))
+3. Click on [Published URL](https://malrhis.github.io/Project-2-codeinstitute/)
+4. perform another round of validation based on `#14.1 Preparation` but this time in github pages instead of liveserver
+
+## 14.3 Production
+In the event that `#14.1` and `#14.2` are clear, the site can then be considered to be in production. 
+If not, repeat to ensure that deploying of code is error free and is working in Github pages.
 
 # 15. Acknowledgements
+- Mr Malcolm Yam - Bootrap, Javascript and Jquery instructor
+- Mr Arif Rawi - HTML and CSS instructor
+- Mr Paul Kunxin Chor - Who guided us on logics for Javascript
+- Mr Shun - Teaching assistant, who supported this project by holding consultation sessions
