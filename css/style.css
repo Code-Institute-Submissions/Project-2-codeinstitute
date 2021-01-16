@@ -48,6 +48,12 @@ body {
     max-height: 14rem;
 }
 
+.slot-img {
+    display: block;
+    max-width: 70px;
+    max-height: 70px;
+}
+
 .navbar {
   background-color: #c83033;
 }
