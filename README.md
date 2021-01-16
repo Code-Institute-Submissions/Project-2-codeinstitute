@@ -199,9 +199,9 @@ The below `code snippets` were added to HTML `<head>`
 
 - <script src="js/jquery-ui.min.js" crossorigin="anonymous"></script>
 ```
-# 10. 
+# 10.
 
-# 10. Content Credits
+# 11. Content Credits
 
 # 12. Testing
 ## 12.1 Code Validation using Code Validators
@@ -212,7 +212,7 @@ The below `code snippets` were added to HTML `<head>`
   - <img src="images/jshint-config.png">
   - No issues were found with `New Javascript features (ES6)` and `jQuery` checked in the configuration list
 
-
+## 12.
 
 ## 12.2 User Acceptance Testing + Bug fixing Process
 
