@@ -144,7 +144,7 @@ For the Gray: #6c757d
   ```
   * "" character was also found in the response from the API, and had to be removed from the flavor text upon further testing.
 
-## 7.2.3 Move select double-entry validation 
+## 7.2.3 Move selection: double-entry validation 
 In the event user selects the same move again from the dropdown of the moves, an alert will appear telling the user that the `"Move has already been selected"` The user will be blocked from adding that move to the movelist of the pokemon
 
 ## 7.2.4 Pokemon Abilities
@@ -199,11 +199,15 @@ The below `code snippets` were added to HTML `<head>`
 
 - <script src="js/jquery-ui.min.js" crossorigin="anonymous"></script>
 ```
+# 10. 
 
 # 10. Content Credits
 
 # 12. Testing
 ## 12.1 Code Validation using Code Validators
+- `Style.css` was validated using the W3C Jigsaw validator [Link](https://jigsaw.w3.org/css-validator/validator)
+- 
+
 ## 12.2 User Acceptance Testing + Bug fixing Process
 
 # 13. Bugs Found
