@@ -41,7 +41,7 @@ $(document).ready(function () {
     $(`.preview-move-chosen`).remove();
     localStorage.removeItem("previewChosenMoveList");
 
-    let pokemonNameInput = $("#text-name").val();
+    let pokemonNameInput = $("#text-name").val().toLowerCase();
     // Call Pokemon API
     let pokemonAPI = {
       url: "https://pokeapi.co/api/v2/pokemon/" + pokemonNameInput,
@@ -344,7 +344,7 @@ $(document).ready(function () {
     $.ajax(allPokemonListCall).done(function (response) {
       // .map() method to drill into response array
       let allPokemonList = response.results.map(function (x) {
-        return x.name;
+        return x.name.charAt(0).toUpperCase() + x.name.slice(1);
       });
       $("#text-name").autocomplete({
         source: allPokemonList,
