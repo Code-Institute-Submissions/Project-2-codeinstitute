@@ -17,6 +17,13 @@ Design a simple pokedex. When users fill in the form and ask the pokedex to "sea
 6. Base Stats of the pokemon - HP, Attack, Special Attack, Defense, Special Defense, Speed
 7. Save up to 6 pokemon so you can refer to them again
 
+## Purpose and Value to users
+
+1. One stop to see all pokemon in one place
+2. Immediate display of sprites and pokedex entries tell a story of all pokemon, even those that the use may not know
+3. Typing and movesets allow the user to put together a party of 6
+4. User can come back even after leaving the website, to view the pokemon that they have selected, and even the moves that they have already selected.
+
 # 2. Demo (Github Pages)
 Site is published via github pages and can be viewed [here](https://malrhis.github.io/Project-2-codeinstitute/)
 
@@ -81,12 +88,44 @@ Reference was taken from the original design of the very first pokdex art from g
 <img style="height:100px" src="images/pokedex-pic-1.png">
 
 ## 6.2 Actual Final Design
+The final design aims to provide a solution to all user stories listed in `section 4 The Goals: User Stories or (JTBD) Jobs-to-be-Done` 
 <img style="height:300px" src="images/design-1.png" >
+
+```
+1. I want to be able to search for a pokemon by name, instead of going through the clunky gameboy/switch keypad
+2. I want to be able to view all pokemon across all the game versions.
+```
+
 <img style="height:400px" src="images/design-2.png" >
+
+```
+2. I want to be able to view all pokemon across all the game versions.
+3. The pokedex in the pokemon games does not give you enough information about the pokemon in a single screen. For instance, it does not tell you the stats of the pokemon:
+    - I want to be able to see a sprite of the pokemon
+    - I want to be able to see the type/types of the pokemon
+    - I want to be able to see the ability that the pokemon has, and if the pokemon has a hidden ability, I want that to be displayed
+    - I want to be able to read about the pokemon's genus and pokedex entry
+    - I want to know what moves does the pokemon have
+```
+
 <img style="height:400px" src="images/design-3.png" >
+
+```
+4. I want to be able to save my pokemon so that I can refer to them later
+```
+
 <img style="height:400px" src="images/design-4.png" >
 
-The final design aims to provide a solution to all user stories listed in `section 4 The Goals: User Stories or (JTBD) Jobs-to-be-Done` 
+```
+3. The pokedex in the pokemon games does not give you enough information about the pokemon in a single screen. For instance, it does not tell you the stats of the pokemon:
+    - I want to be able to see a sprite of the pokemon
+    - I want to be able to see the type/types of the pokemon
+    - I want to be able to see the ability that the pokemon has, and if the pokemon has a hidden ability, I want that to be displayed
+    - I want to be able to read about the pokemon's genus and pokedex entry
+    - I want to know what moves does the pokemon have
+4. I want to be able to save my pokemon so that I can refer to them later
+5. I want to be able to build a mock-up team
+```
 
 ## 6.3 Colour
 Something  closer to  the original pokedex colour palette was chosen to enable familiarity in users
