@@ -11,7 +11,6 @@ $(document).ready(function () {
   // declare variables
   let pokemonPreview;
   let pokemonPreviewSpecies;
-  let saveMoveList;
 
   let typeURL = {
     bug: "https://www.serebii.net/pokedex-bw/type/bug.gif",
@@ -486,7 +485,6 @@ $(document).ready(function () {
   function getPokemon(x) {
     if (JSON.parse(localStorage.getItem(`pokemon${x}`))) {
       let pokemon = JSON.parse(localStorage.getItem(`pokemon${x}`));
-      let pokemonSpecies = JSON.parse(localStorage.getItem(`pokemon${x}Species`));
 
       let pokemonNameInput = pokemon.name;
 
