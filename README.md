@@ -144,7 +144,7 @@ For the Gray: #6c757d
   ```
   * "" character was also found in the response from the API, and had to be removed from the flavor text upon further testing.
 
-## 7.2.3 Move selection: double-entry validation 
+## 7.2.3 Pokemon Move selection: double-entry validation 
 In the event user selects the same move again from the dropdown of the moves, an alert will appear telling the user that the `"Move has already been selected"` The user will be blocked from adding that move to the movelist of the pokemon
 
 ## 7.2.4 Pokemon Abilities
@@ -211,14 +211,14 @@ The below `code snippets` were added to HTML `<head>`
   -  The following configurations were included:
   - <img src="images/jshint-config.png">
   - No issues were found with `New Javascript features (ES6)` and `jQuery` checked in the configuration list
--`index.html` was validated using the W3 Nu HTML Validator ([Link](https://validator.w3.org/nu/#file))
-  - Response from Nu Html Checker: `"Document checking completed. No errors or warnings to show."`
-
-## 12.
+  
+- `index.html` was validated using the W3 Nu HTML Validator ([Link](https://validator.w3.org/nu/#file))
+  - It was found that `<section>` tags and `label`/`placeholder` attributes were wrongly used.
+  - Code was changed to remove erroneous tags and attributes. Replaced these tags with `<div>` and `<p>` to render content instead.
+  - Post code fix Response from Nu Html Checker: `"Document checking completed. No errors or warnings to show."`
 
 ## 12.2 User Acceptance Testing + Bug fixing Process
 
-# 13. Bugs Found
 
 # 14. Deployment
 
