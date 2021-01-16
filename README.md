@@ -205,13 +205,13 @@ The below `code snippets` were added to HTML `<head>`
 
 # 12. Testing
 ## 12.1 Code Validation using Code Validators
-- `style.css` was validated using the W3C Jigsaw validator [Link](https://jigsaw.w3.org/css-validator/validator)
+- `style.css` was validated using the W3C Jigsaw validator ([Link](https://jigsaw.w3.org/css-validator/validator))
   - No issues were found with `style.css`
 - `script.js` was validated using JShint ([Link](https://jshint.com/))
   -  The following configurations were included:
   - <img src="images/jshint-config.png">
   - No issues were found with `New Javascript features (ES6)` and `jQuery` checked in the configuration list
--`index.html` was validated using the W3 Nu HTML Validator [Link](https://validator.w3.org/nu/#file)
+-`index.html` was validated using the W3 Nu HTML Validator ([Link](https://validator.w3.org/nu/#file))
   - Response from Nu Html Checker: `"Document checking completed. No errors or warnings to show."`
 
 ## 12.

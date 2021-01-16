@@ -50,20 +50,6 @@ $(document).ready(function () {
     };
     $.ajax(pokemonAPI).done(function (response) {
           pokemonPreview = response;
-          console.log(pokemonPreview.sprites.front_default);
-          console.log(typeURL[pokemonPreview.types[0].type.name]);
-          console.log(pokemonPreview.abilities[0].ability.name);
-          console.log("hp: ", pokemonPreview.stats[0].base_stat);
-          console.log("attack: ", pokemonPreview.stats[1].base_stat);
-          console.log("defense: ", pokemonPreview.stats[2].base_stat);
-          console.log("special-attack: ", pokemonPreview.stats[3].base_stat);
-          console.log("special-defense: ", pokemonPreview.stats[4].base_stat);
-          console.log("speed: ", pokemonPreview.stats[5].base_stat);
-          console.log(
-            pokemonPreview.moves.map(function (x) {
-              return x.move.name;
-            })
-          );
 
           $("img.pokemonPreview").attr(
             "src",
@@ -174,13 +160,7 @@ $(document).ready(function () {
     };
     $.ajax(pokemonspeciesAPI).done(function (response) {
       pokemonPreviewSpecies = response;
-      console.log(
-        pokemonPreviewSpecies.flavor_text_entries
-          .find(function (x) {
-            return x.language.name == "en";
-          })
-          .flavor_text.replace(/\r\n|\n|\r|/gm, " ")
-      );
+
       $(".pokemon-preview-flavor-text").html(
         `Pokédex Entry: "${pokemonPreviewSpecies.flavor_text_entries
           .find(function (x) {
@@ -189,7 +169,6 @@ $(document).ready(function () {
           .flavor_text.replace(/\r\n|\n|\r|/gm, " ")}"`
       );
 
-      console.log(pokemonPreviewSpecies.genera[7].genus);
       $(".pokemon-preview-genus").html(
         pokemonPreviewSpecies.genera[7].genus.charAt(0).toUpperCase() +
           pokemonPreviewSpecies.genera[7].genus.slice(1)
@@ -250,7 +229,6 @@ $(document).ready(function () {
   // function for checking movelist sanity
   function moveListSanityDisplay(x) {
     let chosenMove = $(`#pokemon-${x}-move-select`).val();
-    console.log(chosenMove);
 
     // initialise List variable
     let chosenMoveList = [];
@@ -307,7 +285,6 @@ $(document).ready(function () {
           movesListExtracted += `<div class="${x}-move-chosen">${movesExtracted}</div>`;
         }
       }
-      console.log(movesListExtracted);
       $(`#pokemon-${x}-move-chosen`).html(movesListExtracted);
     }
   } //eof
@@ -315,49 +292,42 @@ $(document).ready(function () {
   // event listener for clearing move buttons
   $("#pokemon-preview-move-clear").click(function (e) {
     e.preventDefault();
-    console.log("trigger!");
     $(`.preview-move-chosen`).remove();
     localStorage.removeItem("previewChosenMoveList");
   }); //eof
 
   $("#pokemon-1-move-clear").click(function (e) {
     e.preventDefault();
-    console.log("trigger!");
     $(`.1-move-chosen`).remove();
     localStorage.removeItem("1ChosenMoveList");
   }); //eof
 
   $("#pokemon-2-move-clear").click(function (e) {
     e.preventDefault();
-    console.log("trigger!");
     $(`.2-move-chosen`).remove();
     localStorage.removeItem("2ChosenMoveList");
   }); //eof
 
   $("#pokemon-3-move-clear").click(function (e) {
     e.preventDefault();
-    console.log("trigger!");
     $(`.3-move-chosen`).remove();
     localStorage.removeItem("3ChosenMoveList");
   }); //eof
 
   $("#pokemon-4-move-clear").click(function (e) {
     e.preventDefault();
-    console.log("trigger!");
     $(`.4-move-chosen`).remove();
     localStorage.removeItem("4ChosenMoveList");
   }); //eof
 
   $("#5-preview-move-clear").click(function (e) {
     e.preventDefault();
-    console.log("trigger!");
     $(`.5-move-chosen`).remove();
     localStorage.removeItem("5ChosenMoveList");
   }); //eof
 
   $("#6-preview-move-clear").click(function (e) {
     e.preventDefault();
-    console.log("trigger!");
     $(`.6-move-chosen`).remove();
     localStorage.removeItem("6ChosenMoveList");
   }); //eof
@@ -370,11 +340,7 @@ $(document).ready(function () {
       timeout: 0,
     };
     $.ajax(allPokemonListCall).done(function (response) {
-      console.log(
-        response.results.map(function (x) {
-          return x.name;
-        })
-      );
+
       let allPokemonList = response.results.map(function (x) {
         return x.name;
       });
@@ -395,9 +361,8 @@ $(document).ready(function () {
     $(`.1-move-chosen`).remove();
     localStorage.removeItem("1ChosenMoveList");
     if (localStorage.getItem("previewChosenMoveList")) {
-      console.log(localStorage.getItem("previewChosenMoveList"));
+
       let saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
-      console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
 
       localStorage.setItem("1ChosenMoveList", JSON.stringify(saveMovelist));
     }
@@ -418,9 +383,8 @@ $(document).ready(function () {
     $(`.2-move-chosen`).remove();
     localStorage.removeItem("2ChosenMoveList");
     if (localStorage.getItem("previewChosenMoveList")) {
-      console.log(localStorage.getItem("previewChosenMoveList"));
+
       let saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
-      console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
 
       localStorage.setItem("2ChosenMoveList", JSON.stringify(saveMovelist));
     }
@@ -441,9 +405,8 @@ $(document).ready(function () {
     $(`.3-move-chosen`).remove();
     localStorage.removeItem("3ChosenMoveList");
     if (localStorage.getItem("previewChosenMoveList")) {
-      console.log(localStorage.getItem("previewChosenMoveList"));
+
       let saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
-      console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
 
       localStorage.setItem("3ChosenMoveList", JSON.stringify(saveMovelist));
     }
@@ -464,9 +427,8 @@ $(document).ready(function () {
     $(`.4-move-chosen`).remove();
     localStorage.removeItem("4ChosenMoveList");
     if (localStorage.getItem("previewChosenMoveList")) {
-      console.log(localStorage.getItem("previewChosenMoveList"));
+
       let saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
-      console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
 
       localStorage.setItem("4ChosenMoveList", JSON.stringify(saveMovelist));
     }
@@ -487,9 +449,9 @@ $(document).ready(function () {
     $(`.5-move-chosen`).remove();
     localStorage.removeItem("5ChosenMoveList");
     if (localStorage.getItem("previewChosenMoveList")) {
-      console.log(localStorage.getItem("previewChosenMoveList"));
+
       let saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
-      console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
+
       localStorage.setItem("5ChosenMoveList", JSON.stringify(saveMovelist));
     }
     getPokemon(5);
@@ -509,9 +471,8 @@ $(document).ready(function () {
     $(`.6-move-chosen`).remove();
     localStorage.removeItem("6ChosenMoveList");
     if (localStorage.getItem("previewChosenMoveList")) {
-      console.log(localStorage.getItem("previewChosenMoveList"));
+
       let saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
-      console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
 
       localStorage.setItem("6ChosenMoveList", JSON.stringify(saveMovelist));
     }
@@ -526,8 +487,7 @@ $(document).ready(function () {
     if (JSON.parse(localStorage.getItem(`pokemon${x}`))) {
       let pokemon = JSON.parse(localStorage.getItem(`pokemon${x}`));
       let pokemonSpecies = JSON.parse(localStorage.getItem(`pokemon${x}Species`));
-      console.log(pokemon);
-      console.log(pokemonSpecies);
+
       let pokemonNameInput = pokemon.name;
 
       let pokemonAPI = {
@@ -537,8 +497,6 @@ $(document).ready(function () {
       };
       $.ajax(pokemonAPI).done(function (response) {
         pokemonPreview = response;
-        console.log(pokemonPreview.sprites.front_default);
-        console.log(typeURL[pokemonPreview.types[0].type.name]);
 
         $(`img.pokemon${x}`).attr("src", pokemonPreview.sprites.front_default);
         $(`.pokemon-${x}-name`).html(
@@ -605,13 +563,11 @@ $(document).ready(function () {
 
         // Initialize Pokemon Move info variable
         let pokemonMoveInfo = "";
-        console.log(pokemonMoveInfo);
 
         // Extract moves from the API response
         let pokemonMoveList = pokemonPreview.moves.map(function (x) {
           return x.move.name;
         });
-        console.log(pokemonMoveList);
 
         // loop to check if movelist exists and then store moves into pokemonMoveInfo
         if (pokemonMoveList.length) {
@@ -633,13 +589,7 @@ $(document).ready(function () {
       };
       $.ajax(pokemonspeciesAPI).done(function (response) {
         pokemonPreviewSpecies = response;
-        console.log(
-          pokemonPreviewSpecies.flavor_text_entries
-            .find(function (x) {
-              return x.language.name == "en";
-            })
-            .flavor_text.replace(/\r\n|\n|\r|/gm, " ")
-        );
+
         $(`.pokemon-${x}-flavor-text`).html(
           `Pokédex Entry: "${pokemonPreviewSpecies.flavor_text_entries
             .find(function (x) {
@@ -648,7 +598,6 @@ $(document).ready(function () {
             .flavor_text.replace(/\r\n|\n|\r|/gm, " ")}"`
         );
 
-        console.log(pokemonPreviewSpecies.genera[7].genus);
         $(`.pokemon-${x}-genus`).html(
           pokemonPreviewSpecies.genera[7].genus.charAt(0).toUpperCase() +
             pokemonPreviewSpecies.genera[7].genus.slice(1)
