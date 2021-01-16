@@ -278,7 +278,7 @@ Font was implemented using google fonts. In order to mimic the robotic nature of
 
 | # | Test       | Result           | Fix/Expected Result  |
 |-- | ------------- |:-------------:| -----:|
-|1  | Pokedex search is supposed to autocomplete all pokemon | Display entire list of pokemon from pokeAPI | NA |
+|1  | Pokedex search is supposed to autocomplete all pokemon | Display entire list of pokemon from pokeAPI | not able to display dropdown. Discovered that it's due to the script linking at the bottom of HTML body. Loading JQuery script last solved the issue |
 |2  | Enter unlisted pokemon name into pokedex search | No response | Added validation to alert user if they enter a non-existing pokemon name |
 |3  | Display of Name | Pokemon names were uncapitalised|Added code handling to ensure that first letter of pokemon name is capitalised |
 |4  | Display of pokemon type | If pokemon has 2 types, only one was showing. Expected result is to show both when both are available | Added handling. If pokemon has a 2nd type, display 2nd type. if not then only show one type (if pokemon is a pure typing)
