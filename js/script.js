@@ -11,7 +11,7 @@ $(document).ready(function () {
   // declare variables
   let pokemonPreview;
   let pokemonPreviewSpecies;
-
+  // Pokemon Type gif URLs
   let typeURL = {
     bug: "https://www.serebii.net/pokedex-bw/type/bug.gif",
     dark: "https://www.serebii.net/pokedex-bw/type/dark.gif",
@@ -33,6 +33,7 @@ $(document).ready(function () {
     water: "https://www.serebii.net/pokedex-bw/type/water.gif",
   };
 
+  // Pokedex Search Section 
   $("#form-pokemon-entry").submit(function (e) {
     e.preventDefault();
 
@@ -41,7 +42,7 @@ $(document).ready(function () {
     localStorage.removeItem("previewChosenMoveList");
 
     let pokemonNameInput = $("#text-name").val();
-
+    // Call Pokemon API
     let pokemonAPI = {
       url: "https://pokeapi.co/api/v2/pokemon/" + pokemonNameInput,
       method: "GET",
@@ -58,6 +59,7 @@ $(document).ready(function () {
             pokemonPreview.name.charAt(0).toUpperCase() +
               pokemonPreview.name.slice(1)
           );
+          // Dual Type handling
           $("img.pokemon-preview-type1").attr(
             "src",
             typeURL[pokemonPreview.types[0].type.name]
@@ -70,7 +72,7 @@ $(document).ready(function () {
           } else {
             $("img.pokemon-preview-type2").attr("src", "");
           }
-
+          // Hidden Ability Handling
           if (pokemonPreview.abilities[1]) {
             $(".pokemon-preview-ability").html(
               `Ability: ${pokemonPreview.abilities[0].ability.name} 
@@ -107,6 +109,7 @@ $(document).ready(function () {
           $("span.pokemon-preview-speed").html(
             pokemonPreview.stats[5].base_stat
           );
+          // Handle progress bar scaling by /200*100
           $("#progressbar-hp").progressbar({
             value: (pokemonPreview.stats[0].base_stat / 200) * 100,
           });
@@ -159,7 +162,7 @@ $(document).ready(function () {
     };
     $.ajax(pokemonspeciesAPI).done(function (response) {
       pokemonPreviewSpecies = response;
-
+      // Get pokedex text
       $(".pokemon-preview-flavor-text").html(
         `Pokédex Entry: "${pokemonPreviewSpecies.flavor_text_entries
           .find(function (x) {
@@ -167,7 +170,7 @@ $(document).ready(function () {
           })
           .flavor_text.replace(/\r\n|\n|\r|/gm, " ")}"`
       );
-
+      // Get pokemon genus
       $(".pokemon-preview-genus").html(
         pokemonPreviewSpecies.genera[7].genus.charAt(0).toUpperCase() +
           pokemonPreviewSpecies.genera[7].genus.slice(1)
@@ -175,7 +178,7 @@ $(document).ready(function () {
     });
   }); //eof
 
-  // Move Selector Listener that stores chosen moves for preview pokemon
+  // Move Selector Listener for each pokemon that stores chosen moves for preview pokemon
   $(function () {
     $("#pokemon-preview-move-select").change(function (event) {
       event.preventDefault();
@@ -225,7 +228,7 @@ $(document).ready(function () {
     });
   }); //eof
 
-  // function for checking movelist sanity
+  // function for checking movelist sanity(check if moves duplicated)
   function moveListSanityDisplay(x) {
     let chosenMove = $(`#pokemon-${x}-move-select`).val();
 
@@ -339,7 +342,7 @@ $(document).ready(function () {
       timeout: 0,
     };
     $.ajax(allPokemonListCall).done(function (response) {
-
+      // .map() method to drill into response array
       let allPokemonList = response.results.map(function (x) {
         return x.name;
       });
@@ -506,6 +509,7 @@ $(document).ready(function () {
           "src",
           typeURL[pokemonPreview.types[0].type.name]
         );
+        // Dual Type handling
         if (pokemonPreview.types[1]) {
           $(`img.pokemon-${x}-type2`).attr(
             "src",
@@ -514,7 +518,7 @@ $(document).ready(function () {
         } else {
           $(`img.pokemon-${x}-type2`).attr("src", "");
         }
-
+        // Ability and hidden ability handling
         if (pokemonPreview.abilities[1]) {
           $(`.pokemon-${x}-ability`).html(
             `Ability: ${pokemonPreview.abilities[0].ability.name} 
@@ -540,6 +544,7 @@ $(document).ready(function () {
         $(`span.pokemon-${x}-sp-atk`).html(pokemonPreview.stats[3].base_stat);
         $(`span.pokemon-${x}-sp-def`).html(pokemonPreview.stats[4].base_stat);
         $(`span.pokemon-${x}-speed`).html(pokemonPreview.stats[5].base_stat);
+        // Stat and progress bar scaling by /200*100
         $(`#${x}-progressbar-hp`).progressbar({
           value: (pokemonPreview.stats[0].base_stat / 200) * 100,
         });
@@ -587,7 +592,7 @@ $(document).ready(function () {
       };
       $.ajax(pokemonspeciesAPI).done(function (response) {
         pokemonPreviewSpecies = response;
-
+        // Get pokedex flavor text
         $(`.pokemon-${x}-flavor-text`).html(
           `Pokédex Entry: "${pokemonPreviewSpecies.flavor_text_entries
             .find(function (x) {
@@ -595,7 +600,7 @@ $(document).ready(function () {
             })
             .flavor_text.replace(/\r\n|\n|\r|/gm, " ")}"`
         );
-
+        // Get pokemon genus
         $(`.pokemon-${x}-genus`).html(
           pokemonPreviewSpecies.genera[7].genus.charAt(0).toUpperCase() +
             pokemonPreviewSpecies.genera[7].genus.slice(1)
@@ -603,4 +608,4 @@ $(document).ready(function () {
       });
     }
   } //eof
-}); // eoDocumentReady
+}); // end of Document Ready Function
