@@ -205,8 +205,14 @@ The below `code snippets` were added to HTML `<head>`
 
 # 12. Testing
 ## 12.1 Code Validation using Code Validators
-- `Style.css` was validated using the W3C Jigsaw validator [Link](https://jigsaw.w3.org/css-validator/validator)
-- 
+- `style.css` was validated using the W3C Jigsaw validator [Link](https://jigsaw.w3.org/css-validator/validator)
+  - No issues were found with `style.css`
+- `script.js` was validated using JShint ([Link](https://jshint.com/))
+  -  The following configurations were included:
+  - <img src="images/jshint-config.png">
+  - No issues were found with `New Javascript features (ES6)` and `jQuery` checked in the configuration list
+
+
 
 ## 12.2 User Acceptance Testing + Bug fixing Process
 

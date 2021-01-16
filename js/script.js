@@ -396,7 +396,7 @@ $(document).ready(function () {
     localStorage.removeItem("1ChosenMoveList");
     if (localStorage.getItem("previewChosenMoveList")) {
       console.log(localStorage.getItem("previewChosenMoveList"));
-      saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
+      let saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
       console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
 
       localStorage.setItem("1ChosenMoveList", JSON.stringify(saveMovelist));
@@ -419,7 +419,7 @@ $(document).ready(function () {
     localStorage.removeItem("2ChosenMoveList");
     if (localStorage.getItem("previewChosenMoveList")) {
       console.log(localStorage.getItem("previewChosenMoveList"));
-      saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
+      let saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
       console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
 
       localStorage.setItem("2ChosenMoveList", JSON.stringify(saveMovelist));
@@ -442,7 +442,7 @@ $(document).ready(function () {
     localStorage.removeItem("3ChosenMoveList");
     if (localStorage.getItem("previewChosenMoveList")) {
       console.log(localStorage.getItem("previewChosenMoveList"));
-      saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
+      let saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
       console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
 
       localStorage.setItem("3ChosenMoveList", JSON.stringify(saveMovelist));
@@ -465,7 +465,7 @@ $(document).ready(function () {
     localStorage.removeItem("4ChosenMoveList");
     if (localStorage.getItem("previewChosenMoveList")) {
       console.log(localStorage.getItem("previewChosenMoveList"));
-      saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
+      let saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
       console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
 
       localStorage.setItem("4ChosenMoveList", JSON.stringify(saveMovelist));
@@ -488,7 +488,7 @@ $(document).ready(function () {
     localStorage.removeItem("5ChosenMoveList");
     if (localStorage.getItem("previewChosenMoveList")) {
       console.log(localStorage.getItem("previewChosenMoveList"));
-      saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
+      let saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
       console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
       localStorage.setItem("5ChosenMoveList", JSON.stringify(saveMovelist));
     }
@@ -510,7 +510,7 @@ $(document).ready(function () {
     localStorage.removeItem("6ChosenMoveList");
     if (localStorage.getItem("previewChosenMoveList")) {
       console.log(localStorage.getItem("previewChosenMoveList"));
-      saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
+      let saveMovelist = JSON.parse(localStorage.getItem("previewChosenMoveList"));
       console.log(saveMoveList + "HAHAHAHAHAHAHAHAHAHAHAH");
 
       localStorage.setItem("6ChosenMoveList", JSON.stringify(saveMovelist));
@@ -524,8 +524,8 @@ $(document).ready(function () {
   // GetPokemon function to extract from local storage and display in table
   function getPokemon(x) {
     if (JSON.parse(localStorage.getItem(`pokemon${x}`))) {
-      pokemon = JSON.parse(localStorage.getItem(`pokemon${x}`));
-      pokemonSpecies = JSON.parse(localStorage.getItem(`pokemon${x}Species`));
+      let pokemon = JSON.parse(localStorage.getItem(`pokemon${x}`));
+      let pokemonSpecies = JSON.parse(localStorage.getItem(`pokemon${x}Species`));
       console.log(pokemon);
       console.log(pokemonSpecies);
       let pokemonNameInput = pokemon.name;
