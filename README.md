@@ -211,6 +211,8 @@ The below `code snippets` were added to HTML `<head>`
   -  The following configurations were included:
   - <img src="images/jshint-config.png">
   - No issues were found with `New Javascript features (ES6)` and `jQuery` checked in the configuration list
+-`index.html` was validated using the W3 Nu HTML Validator [Link](https://validator.w3.org/nu/#file)
+  - Response from Nu Html Checker: `"Document checking completed. No errors or warnings to show."`
 
 ## 12.
 
