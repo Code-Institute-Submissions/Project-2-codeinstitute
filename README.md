@@ -200,16 +200,34 @@ The below `code snippets` were added to HTML `<head>`
 - <script src="js/jquery-ui.min.js" crossorigin="anonymous"></script>
 ```
 # 10. Content Credits
+## Images of pokemon
+- Rotom Pokedex picture - https://www.serebii.net/
+- Pokemon Sprites - https://pokeapi.co/
+- Pokeball Interior Banner - https://www.deviantart.com/shattered-earth/art/Pokeball-Interiors-571971799
 
-# 11. Content Credits
+## Pokemon Stats, Names, Flavor Text
+- https://pokeapi.co/
+
+## Pokemon Type Icons
+- https://www.serebii.net/
+
+## 11. Font
+Font was implemented using google fonts. In order to mimic the robotic nature of the pokedex, all text related to the pokedex "speaking" was using `Roboto Mono`. Other text is rendered using `Monserrat`
+
+```
+<link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+```
 
 # 12. Testing
 ## 12.1 Code Validation using Code Validators
 - `style.css` was validated using the W3C Jigsaw validator ([Link](https://jigsaw.w3.org/css-validator/validator))
   - No issues were found with `style.css`
 - `script.js` was validated using JShint ([Link](https://jshint.com/))
-  -  The following configurations were included:
-  - <img src="images/jshint-config.png">
+  -  The following configurations were included in JShint:
+  - <img src="images/jshint-config.png" style="height:500px">
   - No issues were found with `New Javascript features (ES6)` and `jQuery` checked in the configuration list
   
 - `index.html` was validated using the W3 Nu HTML Validator ([Link](https://validator.w3.org/nu/#file))
@@ -217,7 +235,23 @@ The below `code snippets` were added to HTML `<head>`
   - Code was changed to remove erroneous tags and attributes. Replaced these tags with `<div>` and `<p>` to render content instead.
   - Post code fix Response from Nu Html Checker: `"Document checking completed. No errors or warnings to show."`
 
-## 12.2 User Acceptance Testing + Bug fixing Process
+## 12.2 Testing and Bug Fixes
+
+| # | Test       | Result           | Fix/Expected Result  |
+|-- | ------------- |:-------------:| -----:|
+|1  | Pokedex search is supposed to autocomplete all pokemon | Display entire list of pokemon from pokeAPI | NA |
+|2  | Enter unlisted pokemon name into pokedex search | No response | Added validation to alert user if they enter a non-existing pokemon name |
+|3  | Display of Name | Pokemon names were uncapitalised|Added code handling to ensure that first letter of pokemon name is capitalised |
+|4  | Display of pokemon type | If pokemon has 2 types, only one was showing. Expected result is to show both when both are available | Added handling. If pokemon has a 2nd type, display 2nd type. if not then only show one type (if pokemon is a pure typing)
+|5  | Display of pokemon stats | Pokemon Stats should scale according to the progressbar widget, but all values of pokemon stats above value 100 resulted in all bars being full for some pokemon. The difference between the 6 stats was lost | Added scaling. pokemon stats were divided by 20 and then multiplied by 100 again. Progress bars now only max out at 200 and above
+|6  | Moveset display | Can choose and display as many moves from autocomplete movebar | All Ok
+|7  | Moveset duplicate | Found that same move can be selected. Should not be the case as pokemon cannot have duplicated moves | Should only show one move once in the selected displayed move. Added alert to handle if the same move is selected
+|8  | Adding of proview pokemon in to 6 slots | Pokemon were able to be successfull stored in local storage. local storage items were found to exist, and retrieval of pokemon Name had no problems
+|9  | Overwriting pokemon in slot | If pokemon has already be saved in slot X, attempt to override the pokemon in slot X with another pokemon | All Ok|
+|10 | Refresh page to check if pokemon saved stay in slot | Pokemon stayed in page because of getpokemon function at beginning of script.js | All Ok|
+|11 | Pokemon move permanence and transfer | Selected moves from preview pokemon were to be stored and transferred to the save slots | All Ok |
+|12 | Clear Move button | The clear move button cleared the moves for the specific pokemon and removed the element from the html DOM| All OK|
+|13 | Test screen size | Tested using Firefox to mock iPhone X, Samsung S9| Save slot buttons were not sizing properly. Edited code to allow bootstrap 4 grid system to apply without buttons overflowing to the next row|
 
 
 # 14. Deployment
