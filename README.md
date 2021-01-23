@@ -276,23 +276,24 @@ Font was implemented using google fonts. In order to mimic the robotic nature of
 
 ## 12.2 Testing and Bug Fixes
 
-| # | Test       | Result           | Fix/Expected Result  |
-|-- | ------------- |:-------------:| -----:|
-|1  | Pokedex search is supposed to autocomplete all pokemon | Display entire list of pokemon from pokeAPI | not able to display dropdown. Discovered that it's due to the script linking at the bottom of HTML body. Loading JQuery script last solved the issue |
-|2  | Enter unlisted pokemon name into pokedex search | No response | Added validation to alert user if they enter a non-existing pokemon name |
-|3  | Display of Name | Pokemon names were uncapitalised|Added code handling to ensure that first letter of pokemon name is capitalised |
-|4  | Display of pokemon type | If pokemon has 2 types, only one was showing. Expected result is to show both when both are available | Added handling. If pokemon has a 2nd type, display 2nd type. if not then only show one type (if pokemon is a pure typing)
-|5  | Display of pokemon stats | Pokemon Stats should scale according to the progressbar widget, but all values of pokemon stats above value 100 resulted in all bars being full for some pokemon. The difference between the 6 stats was lost | Added scaling. pokemon stats were divided by 20 and then multiplied by 100 again. Progress bars now only max out at 200 and above
-|6  | Moveset display | Can choose and display as many moves from autocomplete movebar | All Ok
-|7  | Moveset duplicate | Found that same move can be selected. Should not be the case as pokemon cannot have duplicated moves | Should only show one move once in the selected displayed move. Added alert to handle if the same move is selected
-|8  | Adding of proview pokemon in to 6 slots | Pokemon were able to be successfull stored in local storage. local storage items were found to exist, and retrieval of pokemon Name had no problems
-|9  | Overwriting pokemon in slot | If pokemon has already be saved in slot X, attempt to override the pokemon in slot X with another pokemon | All Ok|
-|10 | Refresh page to check if pokemon saved stay in slot | Pokemon stayed in page because of getpokemon function at beginning of script.js | All Ok|
-|11 | Pokemon move permanence and transfer | Selected moves from preview pokemon were to be stored and transferred to the save slots | All Ok |
-|12 | Clear Move button | The clear move button cleared the moves for the specific pokemon and removed the element from the html DOM| All OK|
-|13 | Test screen size | Tested using Firefox to mock iPhone X, Samsung S9| Save slot buttons were not sizing properly. Edited code to allow bootstrap 4 grid system to apply without buttons overflowing to the next row|
-|14 | Test navbar toggle responsiveness | Navbar toggle disappears when changing to Samsung S9 and iphone instead of `responsive`| It was found that the pokeball images used as placeholders were exceeding the viewport size and pushing the navbar toggle off the viewport. Code changes were added to constrict pokeball placeholder images to 70X70px |
-|15 | Autocomplete seach bar to handle auto capitalization of mobile phone keyboards | Did not handle. API was not called due to capitalization of first character | Double layer of handling added: first toLowerCase() was used when calling API to prevent errors. Capitalization was added to autocomplete to ensure that Capital letters triggle dropdown in autocomplete bar|
+| # |Type| Test       | Result           | Fix/Expected Result  |
+|-- |--|------------- |:-------------:| -----:|
+|1  |Functionality|Pokedex search is supposed to autocomplete all pokemon | Display entire list of pokemon from pokeAPI | not able to display dropdown. Discovered that it's due to the script linking at the bottom of HTML body. Loading JQuery script last solved the issue |
+|2  |Usability| Enter unlisted pokemon name into pokedex search | No response | Added validation to alert user if they enter a non-existing pokemon name |
+|3  |Usability| Display of Name | Pokemon names were uncapitalised|Added code handling to ensure that first letter of pokemon name is capitalised |
+|4  |Functionality| Display of pokemon type | If pokemon has 2 types, only one was showing. Expected result is to show both when both are available | Added handling. If pokemon has a 2nd type, display 2nd type. if not then only show one type (if pokemon is a pure typing)
+|5  |Functionality| Display of pokemon stats | Pokemon Stats should scale according to the progressbar widget, but all values of pokemon stats above value 100 resulted in all bars being full for some pokemon. The difference between the 6 stats was lost | Added scaling. pokemon stats were divided by 20 and then multiplied by 100 again. Progress bars now only max out at 200 and above
+|6  |Functionality| Moveset display | Can choose and display as many moves from autocomplete movebar | All Ok
+|7  |Usability| Moveset duplicate | Found that same move can be selected. Should not be the case as pokemon cannot have duplicated moves | Should only show one move once in the selected displayed move. Added alert to handle if the same move is selected
+|8  |Functionality| Adding of proview pokemon in to 6 slots | Pokemon were able to be successfull stored in local storage. local storage items were found to exist, and retrieval of pokemon Name had no problems
+|9  |Functionality| Overwriting pokemon in slot | If pokemon has already be saved in slot X, attempt to override the pokemon in slot X with another pokemon | All Ok|
+|10 |Functionality| Refresh page to check if pokemon saved stay in slot | Pokemon stayed in page because of getpokemon function at beginning of script.js | All Ok|
+|11 |Functionality| Pokemon move permanence and transfer | Selected moves from preview pokemon were to be stored and transferred to the save slots | All Ok |
+|12 |Usability| Clear Move button | The clear move button cleared the moves for the specific pokemon and removed the element from the html DOM| All OK|
+|13 |Responsiveness| Test screen size | Tested using Firefox to mock iPhone X, Samsung S9| Save slot buttons were not sizing properly. Edited code to allow bootstrap 4 grid system to apply without buttons overflowing to the next row|
+|14 |Responsiveness|Test navbar toggle responsiveness | Navbar toggle disappears when changing to Samsung S9 and iphone instead of `responsive`| It was found that the pokeball images used as placeholders were exceeding the viewport size and pushing the navbar toggle off the viewport. Code changes were added to constrict pokeball placeholder images to 70X70px |
+|15 |Usability| Autocomplete seach bar to handle auto capitalization of mobile phone keyboards | Did not handle. API was not called due to capitalization of first character | Double layer of handling added: first toLowerCase() was used when calling API to prevent errors. Capitalization was added to autocomplete to ensure that Capital letters triggle dropdown in autocomplete bar|
+|16 |Responsiveness| images in the save slots were not centred | Suppose to be centred. |applied bootstrap class `"mx-auto"` in order to center the element|
 
 
 # 14. Deployment
