@@ -1,4 +1,4 @@
-# <img style="height:150px" src="images/rotom-pokedex.png" > Pokédex
+# <img style="height:150px" src="images/rotom-pokedex.png" > All Version Pokédex & Party Builder
 
 # 1. Background & Objective
 ## Background / Problem Statement
@@ -24,8 +24,12 @@ Design a simple pokedex. When users fill in the form and ask the pokedex to "sea
 3. Typing and movesets allow the user to put together a party of 6
 4. User can come back even after leaving the website, to view the pokemon that they have selected, and even the moves that they have already selected.
 
+<br>
+
 # 2. Demo (Github Pages)
 Site is published via github pages and can be viewed [here](https://malrhis.github.io/Project-2-codeinstitute/)
+
+<br>
 
 # 3. Technologies Used
 - HTML
@@ -34,6 +38,8 @@ Site is published via github pages and can be viewed [here](https://malrhis.gith
 - Javascript
 - Jquery
 - Jquesry UI
+
+<br>
 
 # 4. The Goals: User Stories or (JTBD) Jobs-to-be-Done
 
@@ -51,6 +57,7 @@ For the players of pokemon games, or fans who want to be able to search for the 
 4. I want to be able to save my pokemon so that I can refer to them later
 5. I want to be able to build a mock-up team
 ```
+<br>
 
 # 5. Key Features
 - Pokemon API retrieval via [PokeAPI](https://pokeapi.co/)
@@ -89,6 +96,8 @@ Reference was taken from the original design of the very first pokdex art from g
 
 ## 6.2 Actual Final Design
 The final design aims to provide a solution to all user stories listed in `section 4 The Goals: User Stories or (JTBD) Jobs-to-be-Done` 
+
+### 6.2.1 Search Section
 <img style="height:300px" src="images/design-1.png" >
 
 ```
@@ -96,6 +105,7 @@ The final design aims to provide a solution to all user stories listed in `secti
 2. I want to be able to view all pokemon across all the game versions.
 ```
 
+### 6.2.2 Search Result Section
 <img style="height:400px" src="images/design-2.png" >
 
 ```
@@ -108,12 +118,14 @@ The final design aims to provide a solution to all user stories listed in `secti
     - I want to know what moves does the pokemon have
 ```
 
+### 6.2.3 Saving Module Section
 <img style="height:400px" src="images/design-3.png" >
 
 ```
 4. I want to be able to save my pokemon so that I can refer to them later
 ```
 
+### 6.2.4 Party Pokemon Section
 <img style="height:400px" src="images/design-4.png" >
 
 ```
@@ -133,7 +145,9 @@ Something  closer to  the original pokedex colour palette was chosen to enable f
 For the Red: #c83033
 For the Gray: #6c757d
 ```
-# 7. Detailed Features
+<br>
+
+# 7. Detailed Features Write-up
 ## 7.1 Search Bar
 - Implemented using [Jquery UI Autocomplete Widget](https://jqueryui.com/autocomplete/)
 - List of pokemon were generated using https://pokeapi.co/api/v2/pokemon/ 
@@ -156,7 +170,7 @@ For the Gray: #6c757d
   *  Pokemon Genus
   *  Pokemon Flavor Text
 
-* Display all data returned from API using `.htm()` method. 
+* Display all data returned from API using `.html()` method. 
 
 ## 7.2.1 Stats Bar
 * Stats are displayed using using [Jquery UI Progressbar widget](https://jqueryui.com/progressbar/)
@@ -215,8 +229,9 @@ localStorage.setItem("1ChosenMoveList", JSON.stringify(saveMovelist));
 `getPokemon()`function
 Takes in an argument of any of the 6 pokemon `value: 1 to 6`, and display all of the details stored in localStorage. 
 
+<br>
 
-# 8. Bootstrap 4 and Jquery Implementation
+# 8. Bootstrap 4, Jquery & Jquery UI Implementation
 - Bootstrap 4 was used for re-building the website in a responsive, mobile-first manner. You can access Boostrap 4 resouces [here](https://getbootstrap.com/docs/4.5/getting-started/introduction/)
 
 - Jquery library was used to simplify HTML DOM traversal and manipulation, event handling and calling of PokeAPI
@@ -238,6 +253,8 @@ The below `code snippets` were added to HTML `<head>`
 
 - <script src="js/jquery-ui.min.js" crossorigin="anonymous"></script>
 ```
+<br>
+
 # 10. Content Credits
 ## Images of pokemon
 - Rotom Pokedex picture - https://www.serebii.net/
@@ -250,7 +267,9 @@ The below `code snippets` were added to HTML `<head>`
 ## Pokemon Type Icons
 - https://www.serebii.net/
 
-## 11. Font
+<br>
+
+# 11. Fonts
 Font was implemented using google fonts. In order to mimic the robotic nature of the pokedex, all text related to the pokedex "speaking" was using `Roboto Mono`. Other text is rendered using `Monserrat`
 
 ```
@@ -259,6 +278,8 @@ Font was implemented using google fonts. In order to mimic the robotic nature of
       rel="stylesheet"
     />
 ```
+
+<br>
 
 # 12. Testing
 ## 12.1 Code Validation using Code Validators
@@ -274,7 +295,7 @@ Font was implemented using google fonts. In order to mimic the robotic nature of
   - Code was changed to remove erroneous tags and attributes. Replaced these tags with `<div>` and `<p>` to render content instead.
   - Post code fix Response from Nu Html Checker: `"Document checking completed. No errors or warnings to show."`
 
-## 12.2 Testing and Bug Fixes
+## 12.2 Testing and Bug Fixes (Test Case Table)
 
 | # |Type| Test       | Result           | Fix/Expected Result  |
 |-- |--|------------- |:-------------:| -----:|
@@ -284,8 +305,8 @@ Font was implemented using google fonts. In order to mimic the robotic nature of
 |4  |Functionality| Display of pokemon type | If pokemon has 2 types, only one was showing. Expected result is to show both when both are available | Added handling. If pokemon has a 2nd type, display 2nd type. if not then only show one type (if pokemon is a pure typing)
 |5  |Functionality| Display of pokemon stats | Pokemon Stats should scale according to the progressbar widget, but all values of pokemon stats above value 100 resulted in all bars being full for some pokemon. The difference between the 6 stats was lost | Added scaling. pokemon stats were divided by 20 and then multiplied by 100 again. Progress bars now only max out at 200 and above
 |6  |Functionality| Moveset display | Can choose and display as many moves from autocomplete movebar | All Ok
-|7  |Usability| Moveset duplicate | Found that same move can be selected. Should not be the case as pokemon cannot have duplicated moves | Should only show one move once in the selected displayed move. Added alert to handle if the same move is selected
-|8  |Functionality| Adding of proview pokemon in to 6 slots | Pokemon were able to be successfull stored in local storage. local storage items were found to exist, and retrieval of pokemon Name had no problems
+|7  |Usability| Moveset duplicate | Found that same move can be selected. Should not be the case as pokemon cannot have duplicated moves | Should only show one move once in the selected displayed move. Added alert to handle if the same move is selected|
+|8  |Functionality| Adding of proview pokemon in to 6 slots | Pokemon were able to be successfull stored in local storage. local storage items were found to exist, and retrieval of pokemon Name had no problems| All ok|
 |9  |Functionality| Overwriting pokemon in slot | If pokemon has already be saved in slot X, attempt to override the pokemon in slot X with another pokemon | All Ok|
 |10 |Functionality| Refresh page to check if pokemon saved stay in slot | Pokemon stayed in page because of getpokemon function at beginning of script.js | All Ok|
 |11 |Functionality| Pokemon move permanence and transfer | Selected moves from preview pokemon were to be stored and transferred to the save slots | All Ok |
@@ -295,11 +316,12 @@ Font was implemented using google fonts. In order to mimic the robotic nature of
 |15 |Usability| Autocomplete seach bar to handle auto capitalization of mobile phone keyboards | Did not handle. API was not called due to capitalization of first character | Double layer of handling added: first toLowerCase() was used when calling API to prevent errors. Capitalization was added to autocomplete to ensure that Capital letters triggle dropdown in autocomplete bar|
 |16 |Responsiveness| images in the save slots were not centred | Suppose to be centred. |applied bootstrap class `"mx-auto"` in order to center the element|
 
+<br>
 
 # 14. Deployment
 ## 14.1 Preparation
 Before the site goes `live` the following elements are checked via Visual Studio Code's `Live Server` extension:
-- Fulfillment of Learning objectives from Code `Insitutes' Assessment Handbook`
+- Fulfillment of Learning objectives from 'Code Insitutes' Assessment Handbook`
 - Check all code linters and validators are clear
 - Check that all images src are not broken
 - Test viewport dynamic resizing for android (Samsung S9) and iOS (iPhone X/XS)
@@ -312,19 +334,21 @@ Before the site goes `live` the following elements are checked via Visual Studio
 - Ensure all elements of the Saved pokemon are displayed, including sprites and type icons
 - Check Movelist for all 6 pokemon
 
-## 14.2 Deployment
+## 14.2 Deployment Steps
 Deployment was done via github pages.
 
 After ensuring that final commit and push via Visual Studio Code was done
 
 1. Check if the contents have been successfully pushed to repository at https://github.com/Malrhis/Project-2-codeinstitute
-2. Verify that site has been published to github pages via settings section of the repository ([Linke](https://github.com/Malrhis/Project-2-codeinstitute/settings))
+2. Verify that site has been published to github pages via settings section of the repository ([Link](https://github.com/Malrhis/Project-2-codeinstitute/settings))
 3. Click on [Published URL](https://malrhis.github.io/Project-2-codeinstitute/)
 4. perform another round of validation based on `#14.1 Preparation` but this time in github pages instead of liveserver
 
 ## 14.3 Production
-In the event that `#14.1` and `#14.2` are clear, the site can then be considered to be in production. 
+In the event that `#14.1` and `#14.2` are cleared, the site can then be considered to be in production. 
 If not, repeat to ensure that deploying of code is error free and is working in Github pages.
+
+<br>
 
 # 15. Acknowledgements
 - Mr Malcolm Yam - Bootrap, Javascript and Jquery instructor
