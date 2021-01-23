@@ -1,642 +1,827 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://assets.pokemon.com/static2/_ui/img/favicon.ico"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/jquery-ui.min.css" />
+    <!-- style.css -->
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <!-- Add Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Pokédex</title>
+  </head>
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- favicon -->
-  <link rel="icon" type="image/png" href="https://assets.pokemon.com/static2/_ui/img/favicon.ico" />
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
-  <link rel="stylesheet" href="css/jquery-ui.min.css" />
-  <!-- style.css -->
-  <link href="css/style.css" type="text/css" rel="stylesheet" />
-  <!-- Add Google Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap"
-    rel="stylesheet" />
-  <title>Pokédex</title>
-</head>
-
-<body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top px-3">
-    <a class="navbar-brand" href="index.html">
-      <img class="d-inline-block align-top" src="https://assets.pokemon.com/static2/_ui/img/favicon.ico" alt="Logo"
-        width="30" height="30" loading="lazy" />
-      Pokédex</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#party-pokemon-section">Party Pokemon</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <!-- Container to push content down -->
-  <div class="push-navbar-down row-fluid"></div>
-  <div class="container">
-    <section>
-      <h6 class="text-center">"Welcome Trainer! I'm your trusty Pokédex!"</h6>
-      <!-- Form -->
-      <form class="rotom-pokedex-text" id="form-pokemon-entry">
-        <div class="container">
-          <div class="row mb-3">
-            <img
-              src="https://cdn.bulbagarden.net/upload/thumb/3/36/479Rotom-Pok%C3%A9dex.png/250px-479Rotom-Pok%C3%A9dex.png"
-              class="rotom-pokedex-pic mx-auto" alt="rotom-pokedex" />
-            <label class="px-0 my-2">Search for a Pokémon:</label>
-            <input type="text" id="text-name" placeholder="e.g. pikachu" />
-          </div>
-          <div class="row">
-            <input type="submit" class="btn btn-secondary" value="Pokédex Search" />
-          </div>
-        </div>
-      </form>
-    </section>
-    <hr />
-    <!-- Preview Pokemon -->
-    <section>
-      <div id="pokemonPreview" class="card container-fluid">
-        <div class="row my-3">
-          <h5 class="rotom-pokedex-text text-center">
-            Pokédex Search Result
-          </h5>
-          <hr />
-          <div class="card-body col-md-6 py-0 px-0">
-            <img class="pokemonPreview card-img-top mx-auto"
-              src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png" alt="Card image cap" />
-            <div class="card-body py-0">
-              <h5 class="pokemon-preview-name card-title">
-                Who's that Pokémon?
-              </h5>
-              <img class="type-icon pokemon-preview-type1"
-                src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-              <img class="type-icon pokemon-preview-type2"
-                src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-              <div class="genus pokemon-preview-genus card-subtitle text-muted mt-0"></div>
-              <hr />
-              <!-- Preview Pokemon Ability and stats-->
-              <div class="ability pokemon-preview-ability">Ability: ???</div>
-              <hr />
-              <div class="flavor-text pokemon-preview-flavor-text">
-                Pokédex Entry: ???
-              </div>
-              <hr />
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top px-3">
+      <a class="navbar-brand" href="index.html">
+        <img
+          class="d-inline-block align-top"
+          src="https://assets.pokemon.com/static2/_ui/img/favicon.ico"
+          alt="Logo"
+          width="30"
+          height="30"
+          loading="lazy"
+        />
+        Pokédex</a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#party-pokemon-section">Party Pokemon</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Container to push content down -->
+    <div class="push-navbar-down row-fluid"></div>
+    <div class="container">
+      <section>
+        <h6 class="text-center">"Welcome Trainer! I'm your trusty Pokédex!"</h6>
+        <!-- Form -->
+        <form class="rotom-pokedex-text" id="form-pokemon-entry">
+          <div class="container">
+            <div class="row mb-3">
+              <img
+                src="https://cdn.bulbagarden.net/upload/thumb/3/36/479Rotom-Pok%C3%A9dex.png/250px-479Rotom-Pok%C3%A9dex.png"
+                class="rotom-pokedex-pic mx-auto"
+                alt="rotom-pokedex"
+              />
+              <label class="px-0 my-2">Search for a Pokémon:</label>
+              <input type="text" id="text-name" placeholder="e.g. pikachu" />
+            </div>
+            <div class="row">
+              <input
+                type="submit"
+                class="btn btn-secondary"
+                value="Pokédex Search"
+              />
             </div>
           </div>
-          <div class="card-body col-md-6 py-0">
-            <!-- Preview Pokemon Stats Section -->
-            <div>
+        </form>
+      </section>
+      <hr />
+      <!-- Preview Pokemon -->
+      <section>
+        <div id="pokemonPreview" class="card container-fluid">
+          <div class="row my-3">
+            <h5 class="rotom-pokedex-text text-center">
+              Pokédex Search Result
+            </h5>
+            <hr />
+            <div class="card-body col-md-6 py-0 px-0">
+              <img
+                class="pokemonPreview card-img-top mx-auto"
+                src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+                alt="Card image cap"
+              />
+              <div class="card-body py-0">
+                <h5 class="pokemon-preview-name card-title">
+                  Who's that Pokémon?
+                </h5>
+                <img
+                  class="type-icon pokemon-preview-type1"
+                  src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+                  alt
+                />
+                <img
+                  class="type-icon pokemon-preview-type2"
+                  src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+                  alt
+                />
+                <div
+                  class="genus pokemon-preview-genus card-subtitle text-muted mt-0"
+                ></div>
+                <hr />
+                <!-- Preview Pokemon Ability and stats-->
+                <div class="ability pokemon-preview-ability">Ability: ???</div>
+                <hr />
+                <div class="flavor-text pokemon-preview-flavor-text">
+                  Pokédex Entry: ???
+                </div>
+                <hr />
+              </div>
+            </div>
+            <div class="card-body col-md-6 py-0">
+              <!-- Preview Pokemon Stats Section -->
               <div>
-                Stat Total: <span class="pokemon-preview-total">???</span>
+                <div>
+                  Stat Total: <span class="pokemon-preview-total">???</span>
+                </div>
+                <div class="col-12">
+                  HP: <span class="pokemon-preview-hp">???</span>
+                </div>
+                <div id="progressbar-hp"></div>
+
+                <div class="col-12">
+                  Attack: <span class="pokemon-preview-attack">???</span>
+                </div>
+                <div id="progressbar-attack"></div>
+
+                <div class="col-12">
+                  Defense: <span class="pokemon-preview-defense">???</span>
+                </div>
+                <div id="progressbar-defense"></div>
+
+                <div class="col-12">
+                  Sp. Atk: <span class="pokemon-preview-sp-atk">???</span>
+                </div>
+                <div id="progressbar-sp-atk"></div>
+
+                <div class="col-12">
+                  Sp. Def: <span class="pokemon-preview-sp-def">???</span>
+                </div>
+                <div id="progressbar-sp-def"></div>
+
+                <div class="col-12">
+                  Speed: <span class="pokemon-preview-speed">???</span>
+                </div>
+                <div id="progressbar-speed"></div>
               </div>
+              <!-- Preview Pokemon - Move Card -->
+              <div class="card container mt-3 pb-3">
+                <div class="row-fluid my-3">
+                  <p>Moves:</p>
+                  <div class="pokemon-preview-move"></div>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary btn-sm col"
+                    id="pokemon-preview-move-clear"
+                  >
+                    Clear selected moves
+                  </button>
+                </div>
+                <select class="mb-3" id="pokemon-preview-move-select">
+                  <option value="">--Available Moveset--</option>
+                </select>
+                <div id="pokemon-preview-move-chosen">Saved Moves:</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End of Preview Pokemon -->
+      <hr />
+      <!-- Start of Saving Module with 6 buttons -->
+      <section class="container">
+        <div class="row">
+          <img
+            class="save-section-image my-2 mx-auto"
+            src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9d1074fe-77ca-48b8-acc2-09e5215cedae/d9gjc9j-250bf3ef-1c18-40e9-8b9d-dbfa3387cf64.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvOWQxMDc0ZmUtNzdjYS00OGI4LWFjYzItMDllNTIxNWNlZGFlXC9kOWdqYzlqLTI1MGJmM2VmLTFjMTgtNDBlOS04YjlkLWRiZmEzMzg3Y2Y2NC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.NPhhaBGaJ8gg43fd4r32Nm03_GwU99lAb74QSFdYOdc"
+            alt="pokeball save banner"
+          />
+          <h5 class="rotom-pokedex-text text-center">
+            Save the Pokémon above into one of your 6 slots
+          </h5>
+          <p class="rotom-pokedex-text text-justify">
+            In every Pokémon game, Pokémon Trainers traditionally only carry 6
+            pokemon with them to "Be the very best!", and challenge the Pokemon
+            League!
+          </p>
+          <hr />
+          <p class="rotom-pokedex-text text-justify">
+            Click on the slots below to
+            <span class="text-uppercase text-decoration-underline fw-bold"
+              >save or overwrite</span
+            >
+            the above pokemon into the slot
+          </p>
+          <!-- 6 slot buttons -->
+          <div class="row mx-auto">
+            <button
+              type="button"
+              class="btn btn-secondary btn-lg col-4"
+              id="save-button1"
+            >
+              Slot 1<img
+                class="slot-img slot-1-img mx-auto"
+                src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+                alt
+              />
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary btn-lg col-4"
+              id="save-button2"
+            >
+              Slot 2<img
+                class="slot-img slot-2-img mx-auto"
+                src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+                alt
+              />
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary btn-lg col-4"
+              id="save-button3"
+            >
+              Slot 3<img
+                class="slot-img slot-3-img mx-auto"
+                src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+                alt
+              />
+            </button>
+          </div>
+          <div class="my-3"></div>
+          <div class="row mx-auto">
+            <button
+              type="button"
+              class="btn btn-secondary btn-lg col-4"
+              id="save-button4"
+            >
+              Slot 4<img
+                class="slot-img slot-4-img mx-auto"
+                src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+                alt
+              />
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary btn-lg col-4"
+              id="save-button5"
+            >
+              Slot 5<img
+                class="slot-img slot-5-img mx-auto"
+                src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+                alt
+              />
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary btn-lg col-4"
+              id="save-button6"
+            >
+              Slot 6<img
+                class="slot-img slot-6-img mx-auto"
+                src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+                alt
+              />
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- end of saving module -->
+    </div>
+
+    <hr />
+    <!-- Start of party pokemon section -->
+    <section class="container" id="party-pokemon-section">
+      <h1>Your Party Pokemon</h1>
+      <p>Your chosen ones</p>
+      <div class="row">
+        <!-- Pokemon1 -->
+        <div id="pokemon1" class="card col-md-4">
+          <img
+            class="pokemon1 card-img-top mx-auto"
+            src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="pokemon-1-name card-title">Who's that Pokemon?</h5>
+            <img
+              class="type-icon pokemon-1-type1"
+              src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+              alt
+            />
+            <img
+              class="type-icon pokemon-1-type2"
+              src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+              alt
+            />
+            <div
+              class="genus pokemon-1-genus card-subtitle text-muted mt-0"
+            ></div>
+            <hr />
+            <!-- Pokemon1 Ability and stats-->
+            <div class="ability pokemon-1-ability">Ability: ???</div>
+            <hr />
+            <div class="flavor-text pokemon-1-flavor-text">
+              Pokedex Entry: ???
+            </div>
+            <hr />
+            <!-- Pokemon1 Stats Section -->
+            <div>
+              <div>Stat Total: <span class="pokemon-1-total">???</span></div>
               <div class="col-12">
-                HP: <span class="pokemon-preview-hp">???</span>
+                HP: <span class="pokemon-1-hp">???</span>
               </div>
-              <div id="progressbar-hp"></div>
+              <div id="1-progressbar-hp"></div>
 
               <div class="col-12">
-                Attack: <span class="pokemon-preview-attack">???</span>
+                Attack: <span class="pokemon-1-attack">???</span>
               </div>
-              <div id="progressbar-attack"></div>
+              <div id="1-progressbar-attack"></div>
 
               <div class="col-12">
-                Defense: <span class="pokemon-preview-defense">???</span>
+                Defense: <span class="pokemon-1-defense">???</span>
               </div>
-              <div id="progressbar-defense"></div>
+              <div id="1-progressbar-defense"></div>
 
               <div class="col-12">
-                Sp. Atk: <span class="pokemon-preview-sp-atk">???</span>
+                Sp. Atk: <span class="pokemon-1-sp-atk">???</span>
               </div>
-              <div id="progressbar-sp-atk"></div>
+              <div id="1-progressbar-sp-atk"></div>
 
               <div class="col-12">
-                Sp. Def: <span class="pokemon-preview-sp-def">???</span>
+                Sp. Def: <span class="pokemon-1-sp-def">???</span>
               </div>
-              <div id="progressbar-sp-def"></div>
+              <div id="1-progressbar-sp-def"></div>
 
               <div class="col-12">
-                Speed: <span class="pokemon-preview-speed">???</span>
+                Speed: <span class="pokemon-1-speed">???</span>
               </div>
-              <div id="progressbar-speed"></div>
+              <div id="1-progressbar-speed"></div>
+            </div>
+            <!-- Pokemon1 - Move Card -->
+            <div class="card container mt-3 pb-3">
+              <div class="row-fluid my-3">
+                <p>Moves:</p>
+                <div class="pokemon-1-move"></div>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm col"
+                  id="pokemon-1-move-clear"
+                >
+                  Clear selected moves
+                </button>
+              </div>
+              <select class="mb-3" id="pokemon-1-move-select">
+                <option value="">--Available Moveset--</option>
+              </select>
+              <div id="pokemon-1-move-chosen">Saved Moves:</div>
+            </div>
+          </div>
+        </div>
+        <!-- Pokemon2 -->
+
+        <div id="pokemon2" class="card col-md-4">
+          <img
+            class="pokemon2 card-img-top mx-auto"
+            src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="pokemon-2-name card-title">Who's that Pokemon?</h5>
+            <img
+              class="type-icon pokemon-2-type1"
+              src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+              alt
+            />
+            <img
+              class="type-icon pokemon-2-type2"
+              src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+              alt
+            />
+            <div
+              class="genus pokemon-2-genus card-subtitle text-muted mt-0"
+            ></div>
+            <hr />
+            <!-- Pokemon2 Ability and stats-->
+            <div class="ability pokemon-2-ability">Ability: ???</div>
+            <hr />
+            <div class="flavor-text pokemon-2-flavor-text">
+              Pokedex Entry: ???
+            </div>
+            <hr />
+            <!--Pokemon 2 Stats Section -->
+            <div>
+              <div>Stat Total: <span class="pokemon-2-total">???</span></div>
+              <div class="col-12">
+                HP: <span class="pokemon-2-hp">???</span>
+              </div>
+              <div id="2-progressbar-hp"></div>
+
+              <div class="col-12">
+                Attack: <span class="pokemon-2-attack">???</span>
+              </div>
+              <div id="2-progressbar-attack"></div>
+
+              <div class="col-12">
+                Defense: <span class="pokemon-2-defense">???</span>
+              </div>
+              <div id="2-progressbar-defense"></div>
+
+              <div class="col-12">
+                Sp. Atk: <span class="pokemon-2-sp-atk">???</span>
+              </div>
+              <div id="2-progressbar-sp-atk"></div>
+
+              <div class="col-12">
+                Sp. Def: <span class="pokemon-2-sp-def">???</span>
+              </div>
+              <div id="2-progressbar-sp-def"></div>
+
+              <div class="col-12">
+                Speed: <span class="pokemon-2-speed">???</span>
+              </div>
+              <div id="2-progressbar-speed"></div>
+            </div>
+            <!-- Pokemon2 - Move Card -->
+            <div class="card container mt-3 pb-3">
+              <div class="row-fluid my-3">
+                <p>Moves:</p>
+                <div class="pokemon-2-move"></div>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm col"
+                  id="pokemon-2-move-clear"
+                >
+                  Clear selected moves
+                </button>
+              </div>
+              <select class="mb-3" id="pokemon-2-move-select">
+                <option value="">--Available Moveset--</option>
+              </select>
+              <div id="pokemon-2-move-chosen">Saved Moves:</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pokemon3 -->
+
+        <div id="pokemon3" class="card col-md-4">
+          <img
+            class="pokemon3 card-img-top mx-auto"
+            src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="pokemon-3-name card-title">Who's that Pokemon?</h5>
+            <img
+              class="type-icon pokemon-3-type1"
+              src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+              alt
+            />
+            <img
+              class="type-icon pokemon-3-type2"
+              src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+              alt
+            />
+            <div
+              class="genus pokemon-3-genus card-subtitle text-muted mt-0"
+            ></div>
+            <hr />
+            <!-- Pokemon3 Ability and stats-->
+            <div class="ability pokemon-3-ability">Ability: ???</div>
+            <hr />
+            <div class="flavor-text pokemon-3-flavor-text">
+              Pokedex Entry: ???
+            </div>
+            <hr />
+            <!-- Pokemon3 Stats Section -->
+            <div>
+              <div>Stat Total: <span class="pokemon-3-total">???</span></div>
+              <div class="col-12">
+                HP: <span class="pokemon-3-hp">???</span>
+              </div>
+              <div id="3-progressbar-hp"></div>
+
+              <div class="col-12">
+                Attack: <span class="pokemon-3-attack">???</span>
+              </div>
+              <div id="3-progressbar-attack"></div>
+
+              <div class="col-12">
+                Defense: <span class="pokemon-3-defense">???</span>
+              </div>
+              <div id="3-progressbar-defense"></div>
+
+              <div class="col-12">
+                Sp. Atk: <span class="pokemon-3-sp-atk">???</span>
+              </div>
+              <div id="3-progressbar-sp-atk"></div>
+
+              <div class="col-12">
+                Sp. Def: <span class="pokemon-3-sp-def">???</span>
+              </div>
+              <div id="3-progressbar-sp-def"></div>
+
+              <div class="col-12">
+                Speed: <span class="pokemon-3-speed">???</span>
+              </div>
+              <div id="3-progressbar-speed"></div>
+            </div>
+            <!-- Pokemon3 - Move Card -->
+            <div class="card container mt-3 pb-3">
+              <div class="row-fluid my-3">
+                <p>Moves:</p>
+                <div class="pokemon-3-move"></div>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm col"
+                  id="pokemon-3-move-clear"
+                >
+                  Clear selected moves
+                </button>
+              </div>
+              <select class="mb-3" id="pokemon-3-move-select">
+                <option value="">--Available Moveset--</option>
+              </select>
+              <div id="pokemon-3-move-chosen">Saved Moves:</div>
+            </div>
+          </div>
+        </div>
+        <!-- Pokemon4 -->
+
+        <div id="pokemon4" class="card col-md-4">
+          <img
+            class="pokemon4 card-img-top mx-auto"
+            src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="pokemon-4-name card-title">Who's that Pokemon?</h5>
+            <img
+              class="type-icon pokemon-4-type1"
+              src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+              alt
+            />
+            <img
+              class="type-icon pokemon-4-type2"
+              src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+              alt
+            />
+            <div
+              class="genus pokemon-4-genus card-subtitle text-muted mt-0"
+            ></div>
+            <hr />
+            <!-- Pokemon4 Ability and stats-->
+            <div class="ability pokemon-4-ability">Ability: ???</div>
+            <hr />
+            <div class="flavor-text pokemon-4-flavor-text">
+              Pokedex Entry: ???
+            </div>
+            <hr />
+            <!-- Pokemon4 Stats Section -->
+            <div>
+              <div>Stat Total: <span class="pokemon-4-total">???</span></div>
+              <div class="col-12">
+                HP: <span class="pokemon-4-hp">???</span>
+              </div>
+              <div id="4-progressbar-hp"></div>
+
+              <div class="col-12">
+                Attack: <span class="pokemon-4-attack">???</span>
+              </div>
+              <div id="4-progressbar-attack"></div>
+
+              <div class="col-12">
+                Defense: <span class="pokemon-4-defense">???</span>
+              </div>
+              <div id="4-progressbar-defense"></div>
+
+              <div class="col-12">
+                Sp. Atk: <span class="pokemon-4-sp-atk">???</span>
+              </div>
+              <div id="4-progressbar-sp-atk"></div>
+
+              <div class="col-12">
+                Sp. Def: <span class="pokemon-4-sp-def">???</span>
+              </div>
+              <div id="4-progressbar-sp-def"></div>
+
+              <div class="col-12">
+                Speed: <span class="pokemon-4-speed">???</span>
+              </div>
+              <div id="4-progressbar-speed"></div>
+            </div>
+            <!-- Pokemon4 - Move Card -->
+            <div class="card container mt-3 pb-3">
+              <div class="row-fluid my-3">
+                <p>Moves:</p>
+                <div class="pokemon-4-move"></div>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm col"
+                  id="pokemon-4-move-clear"
+                >
+                  Clear selected moves
+                </button>
+              </div>
+              <select class="mb-3" id="pokemon-4-move-select">
+                <option value="">--Available Moveset--</option>
+              </select>
+              <div id="pokemon-4-move-chosen">Saved Moves:</div>
+            </div>
+          </div>
+        </div>
+        <!-- Pokemon5 -->
+
+        <div id="pokemon5" class="card col-md-4">
+          <img
+            class="pokemon5 card-img-top mx-auto"
+            src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="pokemon-5-name card-title">Who's that Pokemon?</h5>
+            <img
+              class="type-icon pokemon-5-type1"
+              src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+              alt
+            />
+            <img
+              class="type-icon pokemon-5-type2"
+              src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+              alt
+            />
+            <div
+              class="genus pokemon-5-genus card-subtitle text-muted mt-0"
+            ></div>
+            <hr />
+            <!-- Pokemon5 Ability and stats-->
+            <div class="ability pokemon-5-ability">Ability: ???</div>
+            <hr />
+            <div class="flavor-text pokemon-5-flavor-text">
+              Pokedex Entry: ???
+            </div>
+            <hr />
+            <!-- Pokemon5 Stats Section -->
+            <div>
+              <div>Stat Total: <span class="pokemon-5-total">???</span></div>
+              <div class="col-12">
+                HP: <span class="pokemon-5-hp">???</span>
+              </div>
+              <div id="5-progressbar-hp"></div>
+
+              <div class="col-12">
+                Attack: <span class="pokemon-5-attack">???</span>
+              </div>
+              <div id="5-progressbar-attack"></div>
+
+              <div class="col-12">
+                Defense: <span class="pokemon-5-defense">???</span>
+              </div>
+              <div id="5-progressbar-defense"></div>
+
+              <div class="col-12">
+                Sp. Atk: <span class="pokemon-5-sp-atk">???</span>
+              </div>
+              <div id="5-progressbar-sp-atk"></div>
+
+              <div class="col-12">
+                Sp. Def: <span class="pokemon-5-sp-def">???</span>
+              </div>
+              <div id="5-progressbar-sp-def"></div>
+
+              <div class="col-12">
+                Speed: <span class="pokemon-5-speed">???</span>
+              </div>
+              <div id="5-progressbar-speed"></div>
             </div>
             <!-- Preview Pokemon - Move Card -->
             <div class="card container mt-3 pb-3">
               <div class="row-fluid my-3">
                 <p>Moves:</p>
-                <div class="pokemon-preview-move"></div>
-                <button type="button" class="btn btn-outline-secondary btn-sm col" id="pokemon-preview-move-clear">
+                <div class="pokemon-5-move"></div>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm col"
+                  id="pokemon-5-move-clear"
+                >
                   Clear selected moves
                 </button>
               </div>
-              <select class="mb-3" id="pokemon-preview-move-select">
+              <select class="mb-3" id="pokemon-5-move-select">
                 <option value="">--Available Moveset--</option>
               </select>
-              <div id="pokemon-preview-move-chosen">Saved Moves:</div>
+              <div id="pokemon-5-move-chosen">Saved Moves:</div>
+            </div>
+          </div>
+        </div>
+        <!-- Pokemon6  -->
+
+        <div id="pokemon6" class="card col-md-4">
+          <img
+            class="pokemon6 card-img-top mx-auto"
+            src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="pokemon-6-name card-title">Who's that Pokemon?</h5>
+            <img
+              class="type-icon pokemon-6-type1"
+              src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+              alt
+            />
+            <img
+              class="type-icon pokemon-6-type2"
+              src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+              alt
+            />
+            <div
+              class="genus pokemon-6-genus card-subtitle text-muted mt-0"
+            ></div>
+            <hr />
+            <!-- Pokemon-6 Ability and stats-->
+            <div class="ability pokemon-6-ability">Ability: ???</div>
+            <hr />
+            <div class="flavor-text pokemon-6-flavor-text">
+              Pokedex Entry: ???
+            </div>
+            <hr />
+            <!-- Pokemon-6 Stats Section -->
+            <div>
+              <div>Stat Total: <span class="pokemon-6-total">???</span></div>
+              <div class="col-12">
+                HP: <span class="pokemon-6-hp">???</span>
+              </div>
+              <div id="6-progressbar-hp"></div>
+
+              <div class="col-12">
+                Attack: <span class="pokemon-6-attack">???</span>
+              </div>
+              <div id="6-progressbar-attack"></div>
+
+              <div class="col-12">
+                Defense: <span class="pokemon-6-defense">???</span>
+              </div>
+              <div id="6-progressbar-defense"></div>
+
+              <div class="col-12">
+                Sp. Atk: <span class="pokemon-6-sp-atk">???</span>
+              </div>
+              <div id="6-progressbar-sp-atk"></div>
+
+              <div class="col-12">
+                Sp. Def: <span class="pokemon-6-sp-def">???</span>
+              </div>
+              <div id="6-progressbar-sp-def"></div>
+
+              <div class="col-12">
+                Speed: <span class="pokemon-6-speed">???</span>
+              </div>
+              <div id="6-progressbar-speed"></div>
+            </div>
+            <!-- Pokemon6 - Move Card -->
+            <div class="card container mt-3 pb-3">
+              <div class="row-fluid my-3">
+                <p>Moves:</p>
+                <div class="pokemon-6-move"></div>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm col"
+                  id="pokemon-6-move-clear"
+                >
+                  Clear selected moves
+                </button>
+              </div>
+              <select class="mb-3" id="pokemon-6-move-select">
+                <option value="">--Available Moveset--</option>
+              </select>
+              <div id="pokemon-6-move-chosen">Saved Moves:</div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- End of Preview Pokemon -->
     <hr />
-    <section class="container">
-      <div class="row">
-        <img class="save-section-image my-2 mx-auto"
-          src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9d1074fe-77ca-48b8-acc2-09e5215cedae/d9gjc9j-250bf3ef-1c18-40e9-8b9d-dbfa3387cf64.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvOWQxMDc0ZmUtNzdjYS00OGI4LWFjYzItMDllNTIxNWNlZGFlXC9kOWdqYzlqLTI1MGJmM2VmLTFjMTgtNDBlOS04YjlkLWRiZmEzMzg3Y2Y2NC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.NPhhaBGaJ8gg43fd4r32Nm03_GwU99lAb74QSFdYOdc"
-          alt="pokeball save banner" />
-        <h5 class="rotom-pokedex-text text-center">
-          Save the Pokémon above into one of your 6 slots
-        </h5>
-        <p class="rotom-pokedex-text text-justify">
-          In every Pokémon game, Pokémon Trainers traditionally only carry 6
-          pokemon with them to "Be the very best!", and challenge the Pokemon
-          League!
-        </p>
-        <hr />
-        <p class="rotom-pokedex-text text-justify">
-          Click on the slots below to
-          <span class="text-uppercase text-decoration-underline fw-bold">save or overwrite</span>
-          the above pokemon into the slot
-        </p>
-        <div class="row mx-auto">
-          <button type="button" class="btn btn-secondary btn-lg col-4" id="save-button1">
-            Slot 1<img class="slot-img slot-1-img" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
-              alt />
-          </button>
-          <button type="button" class="btn btn-secondary btn-lg col-4" id="save-button2">
-            Slot 2<img class="slot-img slot-2-img" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
-              alt />
-          </button>
-          <button type="button" class="btn btn-secondary btn-lg col-4" id="save-button3">
-            Slot 3<img class="slot-img slot-3-img" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
-              alt />
-          </button>
-        </div>
-        <div class="my-3"></div>
-        <div class="row mx-auto">
-          <button type="button" class="btn btn-secondary btn-lg col-4" id="save-button4">
-            Slot 4<img class="slot-img slot-4-img" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
-              alt />
-          </button>
-          <button type="button" class="btn btn-secondary btn-lg col-4" id="save-button5">
-            Slot 5<img class="slot-img slot-5-img" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
-              alt />
-          </button>
-          <button type="button" class="btn btn-secondary btn-lg col-4" id="save-button6">
-            Slot 6<img class="slot-img slot-6-img" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
-              alt />
-          </button>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <hr />
-
-  <section class="container" id="party-pokemon-section">
-    <h1>Your Party Pokemon</h1>
-    <p>Your chosen ones</p>
-    <div class="row">
-      <!-- Pokemon1 -->
-
-      <div id="pokemon1" class="card col-md-4">
-        <img class="pokemon1 card-img-top mx-auto" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
-          alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="pokemon-1-name card-title">Who's that Pokemon?</h5>
-          <img class="type-icon pokemon-1-type1"
-            src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-          <img class="type-icon pokemon-1-type2"
-            src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-          <div class="genus pokemon-1-genus card-subtitle text-muted mt-0"></div>
-          <hr />
-          <!-- Pokemon1 Ability and stats-->
-          <div class="ability pokemon-1-ability">Ability: ???</div>
-          <hr />
-          <div class="flavor-text pokemon-1-flavor-text">
-            Pokedex Entry: ???
-          </div>
-          <hr />
-          <!-- Pokemon1 Stats Section -->
-          <div>
-            <div>Stat Total: <span class="pokemon-1-total">???</span></div>
-            <div class="col-12">
-              HP: <span class="pokemon-1-hp">???</span>
-            </div>
-            <div id="1-progressbar-hp"></div>
-
-            <div class="col-12">
-              Attack: <span class="pokemon-1-attack">???</span>
-            </div>
-            <div id="1-progressbar-attack"></div>
-
-            <div class="col-12">
-              Defense: <span class="pokemon-1-defense">???</span>
-            </div>
-            <div id="1-progressbar-defense"></div>
-
-            <div class="col-12">
-              Sp. Atk: <span class="pokemon-1-sp-atk">???</span>
-            </div>
-            <div id="1-progressbar-sp-atk"></div>
-
-            <div class="col-12">
-              Sp. Def: <span class="pokemon-1-sp-def">???</span>
-            </div>
-            <div id="1-progressbar-sp-def"></div>
-
-            <div class="col-12">
-              Speed: <span class="pokemon-1-speed">???</span>
-            </div>
-            <div id="1-progressbar-speed"></div>
-          </div>
-          <!-- Pokemon1 - Move Card -->
-          <div class="card container mt-3 pb-3">
-            <div class="row-fluid my-3">
-              <p>Moves:</p>
-              <div class="pokemon-1-move"></div>
-              <button type="button" class="btn btn-outline-secondary btn-sm col" id="pokemon-1-move-clear">
-                Clear selected moves
-              </button>
-            </div>
-            <select class="mb-3" id="pokemon-1-move-select">
-              <option value="">--Available Moveset--</option>
-            </select>
-            <div id="pokemon-1-move-chosen">Saved Moves:</div>
-          </div>
-        </div>
-      </div>
-      <!-- Pokemon2 -->
-
-      <div id="pokemon2" class="card col-md-4">
-        <img class="pokemon2 card-img-top mx-auto" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
-          alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="pokemon-2-name card-title">Who's that Pokemon?</h5>
-          <img class="type-icon pokemon-2-type1"
-            src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-          <img class="type-icon pokemon-2-type2"
-            src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-          <div class="genus pokemon-2-genus card-subtitle text-muted mt-0"></div>
-          <hr />
-          <!-- Pokemon2 Ability and stats-->
-          <div class="ability pokemon-2-ability">Ability: ???</div>
-          <hr />
-          <div class="flavor-text pokemon-2-flavor-text">
-            Pokedex Entry: ???
-          </div>
-          <hr />
-          <!--Pokemon 2 Stats Section -->
-          <div>
-            <div>Stat Total: <span class="pokemon-2-total">???</span></div>
-            <div class="col-12">
-              HP: <span class="pokemon-2-hp">???</span>
-            </div>
-            <div id="2-progressbar-hp"></div>
-
-            <div class="col-12">
-              Attack: <span class="pokemon-2-attack">???</span>
-            </div>
-            <div id="2-progressbar-attack"></div>
-
-            <div class="col-12">
-              Defense: <span class="pokemon-2-defense">???</span>
-            </div>
-            <div id="2-progressbar-defense"></div>
-
-            <div class="col-12">
-              Sp. Atk: <span class="pokemon-2-sp-atk">???</span>
-            </div>
-            <div id="2-progressbar-sp-atk"></div>
-
-            <div class="col-12">
-              Sp. Def: <span class="pokemon-2-sp-def">???</span>
-            </div>
-            <div id="2-progressbar-sp-def"></div>
-
-            <div class="col-12">
-              Speed: <span class="pokemon-2-speed">???</span>
-            </div>
-            <div id="2-progressbar-speed"></div>
-          </div>
-          <!-- Pokemon2 - Move Card -->
-          <div class="card container mt-3 pb-3">
-            <div class="row-fluid my-3">
-              <p>Moves:</p>
-              <div class="pokemon-2-move"></div>
-              <button type="button" class="btn btn-outline-secondary btn-sm col" id="pokemon-2-move-clear">
-                Clear selected moves
-              </button>
-            </div>
-            <select class="mb-3" id="pokemon-2-move-select">
-              <option value="">--Available Moveset--</option>
-            </select>
-            <div id="pokemon-2-move-chosen">Saved Moves:</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pokemon3 -->
-
-      <div id="pokemon3" class="card col-md-4">
-        <img class="pokemon3 card-img-top mx-auto" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
-          alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="pokemon-3-name card-title">Who's that Pokemon?</h5>
-          <img class="type-icon pokemon-3-type1"
-            src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-          <img class="type-icon pokemon-3-type2"
-            src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-          <div class="genus pokemon-3-genus card-subtitle text-muted mt-0"></div>
-          <hr />
-          <!-- Pokemon3 Ability and stats-->
-          <div class="ability pokemon-3-ability">Ability: ???</div>
-          <hr />
-          <div class="flavor-text pokemon-3-flavor-text">
-            Pokedex Entry: ???
-          </div>
-          <hr />
-          <!-- Pokemon3 Stats Section -->
-          <div>
-            <div>Stat Total: <span class="pokemon-3-total">???</span></div>
-            <div class="col-12">
-              HP: <span class="pokemon-3-hp">???</span>
-            </div>
-            <div id="3-progressbar-hp"></div>
-
-            <div class="col-12">
-              Attack: <span class="pokemon-3-attack">???</span>
-            </div>
-            <div id="3-progressbar-attack"></div>
-
-            <div class="col-12">
-              Defense: <span class="pokemon-3-defense">???</span>
-            </div>
-            <div id="3-progressbar-defense"></div>
-
-            <div class="col-12">
-              Sp. Atk: <span class="pokemon-3-sp-atk">???</span>
-            </div>
-            <div id="3-progressbar-sp-atk"></div>
-
-            <div class="col-12">
-              Sp. Def: <span class="pokemon-3-sp-def">???</span>
-            </div>
-            <div id="3-progressbar-sp-def"></div>
-
-            <div class="col-12">
-              Speed: <span class="pokemon-3-speed">???</span>
-            </div>
-            <div id="3-progressbar-speed"></div>
-          </div>
-          <!-- Pokemon3 - Move Card -->
-          <div class="card container mt-3 pb-3">
-            <div class="row-fluid my-3">
-              <p>Moves:</p>
-              <div class="pokemon-3-move"></div>
-              <button type="button" class="btn btn-outline-secondary btn-sm col" id="pokemon-3-move-clear">
-                Clear selected moves
-              </button>
-            </div>
-            <select class="mb-3" id="pokemon-3-move-select">
-              <option value="">--Available Moveset--</option>
-            </select>
-            <div id="pokemon-3-move-chosen">Saved Moves:</div>
-          </div>
-        </div>
-      </div>
-      <!-- Pokemon4 -->
-
-      <div id="pokemon4" class="card col-md-4">
-        <img class="pokemon4 card-img-top mx-auto" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
-          alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="pokemon-4-name card-title">Who's that Pokemon?</h5>
-          <img class="type-icon pokemon-4-type1"
-            src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-          <img class="type-icon pokemon-4-type2"
-            src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-          <div class="genus pokemon-4-genus card-subtitle text-muted mt-0"></div>
-          <hr />
-          <!-- Pokemon4 Ability and stats-->
-          <div class="ability pokemon-4-ability">Ability: ???</div>
-          <hr />
-          <div class="flavor-text pokemon-4-flavor-text">
-            Pokedex Entry: ???
-          </div>
-          <hr />
-          <!-- Pokemon4 Stats Section -->
-          <div>
-            <div>Stat Total: <span class="pokemon-4-total">???</span></div>
-            <div class="col-12">
-              HP: <span class="pokemon-4-hp">???</span>
-            </div>
-            <div id="4-progressbar-hp"></div>
-
-            <div class="col-12">
-              Attack: <span class="pokemon-4-attack">???</span>
-            </div>
-            <div id="4-progressbar-attack"></div>
-
-            <div class="col-12">
-              Defense: <span class="pokemon-4-defense">???</span>
-            </div>
-            <div id="4-progressbar-defense"></div>
-
-            <div class="col-12">
-              Sp. Atk: <span class="pokemon-4-sp-atk">???</span>
-            </div>
-            <div id="4-progressbar-sp-atk"></div>
-
-            <div class="col-12">
-              Sp. Def: <span class="pokemon-4-sp-def">???</span>
-            </div>
-            <div id="4-progressbar-sp-def"></div>
-
-            <div class="col-12">
-              Speed: <span class="pokemon-4-speed">???</span>
-            </div>
-            <div id="4-progressbar-speed"></div>
-          </div>
-          <!-- Pokemon4 - Move Card -->
-          <div class="card container mt-3 pb-3">
-            <div class="row-fluid my-3">
-              <p>Moves:</p>
-              <div class="pokemon-4-move"></div>
-              <button type="button" class="btn btn-outline-secondary btn-sm col" id="pokemon-4-move-clear">
-                Clear selected moves
-              </button>
-            </div>
-            <select class="mb-3" id="pokemon-4-move-select">
-              <option value="">--Available Moveset--</option>
-            </select>
-            <div id="pokemon-4-move-chosen">Saved Moves:</div>
-          </div>
-        </div>
-      </div>
-      <!-- Pokemon5 -->
-
-      <div id="pokemon5" class="card col-md-4">
-        <img class="pokemon5 card-img-top mx-auto" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
-          alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="pokemon-5-name card-title">Who's that Pokemon?</h5>
-          <img class="type-icon pokemon-5-type1"
-            src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-          <img class="type-icon pokemon-5-type2"
-            src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-          <div class="genus pokemon-5-genus card-subtitle text-muted mt-0"></div>
-          <hr />
-          <!-- Pokemon5 Ability and stats-->
-          <div class="ability pokemon-5-ability">Ability: ???</div>
-          <hr />
-          <div class="flavor-text pokemon-5-flavor-text">
-            Pokedex Entry: ???
-          </div>
-          <hr />
-          <!-- Pokemon5 Stats Section -->
-          <div>
-            <div>Stat Total: <span class="pokemon-5-total">???</span></div>
-            <div class="col-12">
-              HP: <span class="pokemon-5-hp">???</span>
-            </div>
-            <div id="5-progressbar-hp"></div>
-
-            <div class="col-12">
-              Attack: <span class="pokemon-5-attack">???</span>
-            </div>
-            <div id="5-progressbar-attack"></div>
-
-            <div class="col-12">
-              Defense: <span class="pokemon-5-defense">???</span>
-            </div>
-            <div id="5-progressbar-defense"></div>
-
-            <div class="col-12">
-              Sp. Atk: <span class="pokemon-5-sp-atk">???</span>
-            </div>
-            <div id="5-progressbar-sp-atk"></div>
-
-            <div class="col-12">
-              Sp. Def: <span class="pokemon-5-sp-def">???</span>
-            </div>
-            <div id="5-progressbar-sp-def"></div>
-
-            <div class="col-12">
-              Speed: <span class="pokemon-5-speed">???</span>
-            </div>
-            <div id="5-progressbar-speed"></div>
-          </div>
-          <!-- Preview Pokemon - Move Card -->
-          <div class="card container mt-3 pb-3">
-            <div class="row-fluid my-3">
-              <p>Moves:</p>
-              <div class="pokemon-5-move"></div>
-              <button type="button" class="btn btn-outline-secondary btn-sm col" id="pokemon-5-move-clear">
-                Clear selected moves
-              </button>
-            </div>
-            <select class="mb-3" id="pokemon-5-move-select">
-              <option value="">--Available Moveset--</option>
-            </select>
-            <div id="pokemon-5-move-chosen">Saved Moves:</div>
-          </div>
-        </div>
-      </div>
-      <!-- Pokemon6  -->
-
-      <div id="pokemon6" class="card col-md-4">
-        <img class="pokemon6 card-img-top mx-auto" src="https://cdn.bulbagarden.net/upload/d/dc/GO_Pok%C3%A9_Ball.png"
-          alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="pokemon-6-name card-title">Who's that Pokemon?</h5>
-          <img class="type-icon pokemon-6-type1"
-            src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-          <img class="type-icon pokemon-6-type2"
-            src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt />
-          <div class="genus pokemon-6-genus card-subtitle text-muted mt-0"></div>
-          <hr />
-          <!-- Pokemon-6 Ability and stats-->
-          <div class="ability pokemon-6-ability">Ability: ???</div>
-          <hr />
-          <div class="flavor-text pokemon-6-flavor-text">
-            Pokedex Entry: ???
-          </div>
-          <hr />
-          <!-- Pokemon-6 Stats Section -->
-          <div>
-            <div>Stat Total: <span class="pokemon-6-total">???</span></div>
-            <div class="col-12">
-              HP: <span class="pokemon-6-hp">???</span>
-            </div>
-            <div id="6-progressbar-hp"></div>
-
-            <div class="col-12">
-              Attack: <span class="pokemon-6-attack">???</span>
-            </div>
-            <div id="6-progressbar-attack"></div>
-
-            <div class="col-12">
-              Defense: <span class="pokemon-6-defense">???</span>
-            </div>
-            <div id="6-progressbar-defense"></div>
-
-            <div class="col-12">
-              Sp. Atk: <span class="pokemon-6-sp-atk">???</span>
-            </div>
-            <div id="6-progressbar-sp-atk"></div>
-
-            <div class="col-12">
-              Sp. Def: <span class="pokemon-6-sp-def">???</span>
-            </div>
-            <div id="6-progressbar-sp-def"></div>
-
-            <div class="col-12">
-              Speed: <span class="pokemon-6-speed">???</span>
-            </div>
-            <div id="6-progressbar-speed"></div>
-          </div>
-          <!-- Pokemon6 - Move Card -->
-          <div class="card container mt-3 pb-3">
-            <div class="row-fluid my-3">
-              <p>Moves:</p>
-              <div class="pokemon-6-move"></div>
-              <button type="button" class="btn btn-outline-secondary btn-sm col" id="pokemon-6-move-clear">
-                Clear selected moves
-              </button>
-            </div>
-            <select class="mb-3" id="pokemon-6-move-select">
-              <option value="">--Available Moveset--</option>
-            </select>
-            <div id="pokemon-6-move-chosen">Saved Moves:</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <hr />
-  <!-- Bootstrap Bundle with Popper -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-    crossorigin="anonymous"></script>
-  <!-- Jquery UI -->
-  <script src="js/jquery-ui.min.js" crossorigin="anonymous"></script>
-  <!-- custom Javascript Script.js -->
-  <script src="js/script.js"></script>
-</body>
-
+    <!-- Bootstrap Bundle with Popper -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Jquery UI -->
+    <script src="js/jquery-ui.min.js" crossorigin="anonymous"></script>
+    <!-- custom Javascript Script.js -->
+    <script src="js/script.js"></script>
+  </body>
 </html>
